@@ -51,6 +51,9 @@
       <a href="../articles/data_structures.html">Data Structures</a>
     </li>
     <li>
+      <a href="../articles/gsoc_contrib.html">Google Summer of Code Contributions</a>
+    </li>
+    <li>
       <a href="../articles/manipulating_nested_parse_data.html">Manipulating the nested Parse Table</a>
     </li>
     <li>
@@ -84,7 +87,7 @@
       <h1>Manipulating the nested Parse Table</h1>
                         <h4 class="author">Lorenz Walthert</h4>
             
-            <h4 class="date">2017-08-19</h4>
+            <h4 class="date">2017-08-21</h4>
           </div>
 
     
@@ -125,7 +128,7 @@ pkgload<span class="op">::</span><span class="kw"><a href="http://www.rdocumenta
 ##   pd_flat$col2_nl &lt;- if_else(pd_flat$newlines &gt; 0L, 0L, pd_flat$col2)
 ##   pd_flat$spaces &lt;- pd_flat$col3 - pd_flat$col2_nl - 1L
 ##   pd_flat$multi_line &lt;- ifelse(pd_flat$terminal, FALSE, NA)
-## 
+##   pd_flat$indention_ref_id &lt;- NA
 ##   ret &lt;- pd_flat[, !(names(pd_flat) %in% c("line3", "col3", "col2_nl"))]
 ## 
 ## 
@@ -144,13 +147,13 @@ pkgload<span class="op">::</span><span class="kw"><a href="http://www.rdocumenta
 pd_nested &lt;-<span class="st"> </span><span class="kw"><a href="../reference/compute_parse_data_nested.html">compute_parse_data_nested</a></span>(code)
 pd_nested_enhanced &lt;-<span class="st"> </span><span class="kw"><a href="../reference/visit.html">pre_visit</a></span>(pd_nested, <span class="kw">c</span>(create_filler))
 pd_nested_enhanced</code></pre></div>
-<pre><code>## # A tibble: 1 x 19
+<pre><code>## # A tibble: 1 x 20
 ##   line1  col1 line2  col2    id parent token terminal  text short
 ##   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt; &lt;chr&gt;    &lt;lgl&gt; &lt;chr&gt; &lt;chr&gt;
 ## 1     1     1     1    47    49      0  expr    FALSE            
-## # ... with 9 more variables: token_before &lt;chr&gt;, token_after &lt;chr&gt;,
+## # ... with 10 more variables: token_before &lt;chr&gt;, token_after &lt;chr&gt;,
 ## #   internal &lt;lgl&gt;, child &lt;list&gt;, newlines &lt;int&gt;, lag_newlines &lt;int&gt;,
-## #   spaces &lt;int&gt;, multi_line &lt;lgl&gt;, indent &lt;dbl&gt;</code></pre>
+## #   spaces &lt;int&gt;, multi_line &lt;lgl&gt;, indention_ref_id &lt;lgl&gt;, indent &lt;dbl&gt;</code></pre>
 <p>As a next step, we need to find a way to serialize the nested tibble, or in other words, to transform it to its character vector representation. As a starting point, consider the function <code>serialize</code> that was introduced in the vignette “Data Structures”.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">serialize &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
   out &lt;-<span class="st"> </span><span class="kw">Map</span>(
@@ -185,23 +188,23 @@ pd_nested_enhanced</code></pre></div>
 ## &lt;environment: namespace:styler&gt;</code></pre>
 <p>However, things get a bit more complicated, mainly because line break and white space information is not only contained in the terminal tibbles of the nested parse data, but even before, as the following example shows.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pd_nested_enhanced<span class="op">$</span>child[[<span class="dv">1</span>]]</code></pre></div>
-<pre><code>## # A tibble: 3 x 19
+<pre><code>## # A tibble: 3 x 20
 ##   line1  col1 line2  col2    id parent       token terminal  text short
 ##   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt;       &lt;chr&gt;    &lt;lgl&gt; &lt;chr&gt; &lt;chr&gt;
 ## 1     1     1     1     1     3     49        expr    FALSE            
 ## 2     1     3     1     4     2     49 LEFT_ASSIGN     TRUE    &lt;-    &lt;-
 ## 3     1     6     1    47    48     49        expr    FALSE            
-## # ... with 9 more variables: token_before &lt;chr&gt;, token_after &lt;chr&gt;,
+## # ... with 10 more variables: token_before &lt;chr&gt;, token_after &lt;chr&gt;,
 ## #   internal &lt;lgl&gt;, child &lt;list&gt;, newlines &lt;int&gt;, lag_newlines &lt;int&gt;,
-## #   spaces &lt;int&gt;, multi_line &lt;lgl&gt;, indent &lt;dbl&gt;</code></pre>
+## #   spaces &lt;int&gt;, multi_line &lt;lgl&gt;, indention_ref_id &lt;lgl&gt;, indent &lt;dbl&gt;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pd_nested_enhanced<span class="op">$</span>child[[<span class="dv">1</span>]]<span class="op">$</span>child[[<span class="dv">1</span>]]</code></pre></div>
-<pre><code>## # A tibble: 1 x 19
+<pre><code>## # A tibble: 1 x 20
 ##   line1  col1 line2  col2    id parent  token terminal  text short
 ##   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt;  &lt;chr&gt;    &lt;lgl&gt; &lt;chr&gt; &lt;chr&gt;
 ## 1     1     1     1     1     1      3 SYMBOL     TRUE     a     a
-## # ... with 9 more variables: token_before &lt;chr&gt;, token_after &lt;chr&gt;,
+## # ... with 10 more variables: token_before &lt;chr&gt;, token_after &lt;chr&gt;,
 ## #   child &lt;list&gt;, internal &lt;lgl&gt;, newlines &lt;int&gt;, lag_newlines &lt;int&gt;,
-## #   spaces &lt;int&gt;, multi_line &lt;lgl&gt;, indent &lt;dbl&gt;</code></pre>
+## #   spaces &lt;int&gt;, multi_line &lt;lgl&gt;, indention_ref_id &lt;lgl&gt;, indent &lt;dbl&gt;</code></pre>
 <p>After “a” in <code>code</code>, there is a space, but this information is not contained in the tibble where we find the terminal “a”. In general, we must add newlines and spaces values <em>after</em> we computed character vector representation of the expression. In our example: we know that there is a space after the non-terminal “a” by looking at <code>pd_nested_enhanced$child[[1]]</code>. Therefore, we need to add this space to the very last terminal within <code>pd_nested_enhanced$child[[1]]</code> before we collapse everything together.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">serialize_parse_data_nested_helper</code></pre></div>
 <pre><code>## function(pd_nested, pass_indent) {
@@ -242,13 +245,13 @@ pd_nested_enhanced</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/visit.html">pre_visit</a></span>(pd_nested, 
                <span class="kw">c</span>(create_filler, 
                  purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/partial">partial</a></span>(indent_round, <span class="dt">indent_by =</span> <span class="dv">2</span>)))</code></pre></div>
-<pre><code>## # A tibble: 1 x 19
+<pre><code>## # A tibble: 1 x 20
 ##   line1  col1 line2  col2    id parent token terminal  text short
 ##   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt; &lt;chr&gt;    &lt;lgl&gt; &lt;chr&gt; &lt;chr&gt;
 ## 1     1     1     1    47    49      0  expr    FALSE            
-## # ... with 9 more variables: token_before &lt;chr&gt;, token_after &lt;chr&gt;,
+## # ... with 10 more variables: token_before &lt;chr&gt;, token_after &lt;chr&gt;,
 ## #   internal &lt;lgl&gt;, child &lt;list&gt;, newlines &lt;int&gt;, lag_newlines &lt;int&gt;,
-## #   spaces &lt;int&gt;, multi_line &lt;lgl&gt;, indent &lt;dbl&gt;</code></pre>
+## #   spaces &lt;int&gt;, multi_line &lt;lgl&gt;, indention_ref_id &lt;lgl&gt;, indent &lt;dbl&gt;</code></pre>
 <p>We can see how indention works with a more complicated example</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">indented &lt;-<span class="st"> </span><span class="kw">c</span>(
   <span class="st">"call("</span>, 
@@ -281,7 +284,7 @@ back_and_forth &lt;-<span class="st"> </span>not_indented <span class="op">%&gt;
 
 
       <footer><div class="copyright">
-  <p>Developed by Kirill Müller.</p>
+  <p>Developed by Kirill Müller, Lorenz Walthert.</p>
 </div>
 
 <div class="pkgdown">

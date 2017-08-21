@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get the transformer functions for nested styling — get_transformers_nested • styler</title>
+<title>Check whether a parse table corresponds to a a certain expression — pd_is • styler</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -74,6 +74,9 @@
       <a href="../articles/data_structures.html">Data Structures</a>
     </li>
     <li>
+      <a href="../articles/gsoc_contrib.html">Google Summer of Code Contributions</a>
+    </li>
+    <li>
       <a href="../articles/manipulating_nested_parse_data.html">Manipulating the nested Parse Table</a>
     </li>
     <li>
@@ -104,61 +107,33 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get the transformer functions for nested styling</h1>
+    <h1>Check whether a parse table corresponds to a a certain expression</h1>
     </div>
 
     
-    <p>Similar to <code><a href='get_transformers_flat.html'>get_transformers_flat()</a></code>, but additionally, returns some
-functions needed due the fact that styling is done in a nested way.</p>
+    <p>Check whether a parse table corresponds to a a certain expression</p>
     
 
-    <pre class="usage"><span class='fu'>get_transformers_nested</span>(<span class='kw'>scope</span> <span class='kw'>=</span> <span class='st'>"tokens"</span>, <span class='kw'>strict</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>indent_by</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>start_comments_with_one_space</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>is_curly_expr</span>(<span class='no'>pd</span>)
+
+<span class='fu'>is_function_call</span>(<span class='no'>pd</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>scope</th>
-      <td><p>The extent of manipulation. Can range from "none" (least
-invasive) to "token" (most invasive). See 'Details'. This argument is a
-vector of length one.</p></td>
-    </tr>
-    <tr>
-      <th>strict</th>
-      <td><p>A logical value indicating whether a set of strict
-or not so strict transformer functions should be returned.</p></td>
-    </tr>
-    <tr>
-      <th>indent_by</th>
-      <td><p>How many spaces of indention should be inserted after
-operators such as '('.</p></td>
-    </tr>
-    <tr>
-      <th>start_comments_with_one_space</th>
-      <td><p>Whether or not comments should start
-with only one space (see <code><a href='start_comments_with_space.html'>start_comments_with_space()</a></code>).</p></td>
+      <th>pd</th>
+      <td><p>A parse table.</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
 
-    <p>The following options for <code>scope</code> are available.</p><ul>
-<li><p>"none": Performs no transformation at all.</p></li>
-<li><p>"spaces": Manipulates spacing between token on the same line.</p></li>
-<li><p>"indention": In addition to "spaces", this option also manipulates the
-indention level.</p></li>
-<li><p>"line_breaks": In addition to "indention", this option also manipulates
-line breaks.</p></li>
-<li><p>"tokens": In addition to "line_breaks", this option also manipulates
-tokens.</p></li>
+    <ul>
+<li><p><code>is_curly_expr</code>: Checks whether <code>pd</code> contains an expression wrapped in
+curley brackets.</p></li>
+<li><p><code>is_function_call</code>: Checks whether <code>pd</code> is a function call.</p></li>
 </ul>
-    <p>As it becomes clear from this description, more invasive operations can only
-be performed if all less invasive operations are performed too.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <p>Other obtain transformers: <code><a href='get_transformers_flat.html'>get_transformers_flat</a></code></p>
     
 
   </div>
@@ -167,9 +142,7 @@ be performed if all less invasive operations are performed too.</p>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#see-also">See also</a></li>
+      <li><a href="#functions">Functions</a></li>
           </ul>
 
   </div>
@@ -177,7 +150,7 @@ be performed if all less invasive operations are performed too.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Kirill Müller.</p>
+  <p>Developed by Kirill Müller, Lorenz Walthert.</p>
 </div>
 
 <div class="pkgdown">

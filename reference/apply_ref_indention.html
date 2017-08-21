@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get the transformer functions for styling — get_transformers • styler</title>
+<title>Apply reference indention to tokens — apply_ref_indention • styler</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -74,6 +74,9 @@
       <a href="../articles/data_structures.html">Data Structures</a>
     </li>
     <li>
+      <a href="../articles/gsoc_contrib.html">Google Summer of Code Contributions</a>
+    </li>
+    <li>
       <a href="../articles/manipulating_nested_parse_data.html">Manipulating the nested Parse Table</a>
     </li>
     <li>
@@ -104,35 +107,26 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get the transformer functions for styling</h1>
+    <h1>Apply reference indention to tokens</h1>
     </div>
 
     
-    <p>Get the transformer functions for styling</p>
+    <p>Applies the reference indention created with functions
+<code><a href='update_indention_ref.html'>update_indention_ref()</a></code> to the flattened parse table. The indention
+is applied to all token that inherit from a reference token sequentially,
+i.e. by looping over the target tokens.</p>
     
 
-    <pre class="usage"><span class='fu'>get_transformers</span>(<span class='kw'>flat</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>apply_ref_indention</span>(<span class='no'>flattened_pd</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>flat</th>
-      <td><p>Whether the transformer functions for flat or nested styling
-should be returned.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Parameters passed to</p><ul>
-<li><p><code><a href='get_transformers_flat.html'>get_transformers_flat()</a></code> if <code>flat = TRUE</code> or</p></li>
-<li><p><code><a href='get_transformers_nested.html'>get_transformers_nested()</a></code> if <code>flat = FALSE</code>.</p></li>
-</ul></td>
+      <th>flattened_pd</th>
+      <td><p>A flattened parse table</p></td>
     </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A list of transformer functions that operate on flat parse tables.</p>
     
 
   </div>
@@ -140,16 +134,14 @@ should be returned.</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-          </ul>
+                </ul>
 
   </div>
 </div>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Kirill Müller.</p>
+  <p>Developed by Kirill Müller, Lorenz Walthert.</p>
 </div>
 
 <div class="pkgdown">

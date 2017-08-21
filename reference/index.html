@@ -74,6 +74,9 @@
       <a href="../articles/data_structures.html">Data Structures</a>
     </li>
     <li>
+      <a href="../articles/gsoc_contrib.html">Google Summer of Code Contributions</a>
+    </li>
+    <li>
       <a href="../articles/manipulating_nested_parse_data.html">Manipulating the nested Parse Table</a>
     </li>
     <li>
@@ -131,6 +134,18 @@
             <p><code><a href="add_token_terminal.html">add_terminal_token_after</a></code> <code><a href="add_token_terminal.html">add_terminal_token_before</a></code> </p>
           </td>
           <td><p>Add information about previous / next token to each terminal</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="apply_ref_indention_one.html">apply_ref_indention_one</a></code> </p>
+          </td>
+          <td><p>Applying reference indention of a target token</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="apply_ref_indention.html">apply_ref_indention</a></code> </p>
+          </td>
+          <td><p>Apply reference indention to tokens</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -224,6 +239,12 @@
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="create_style_guide.html">create_style_guide</a></code> </p>
+          </td>
+          <td><p>Create a style guide</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="create_tree.html">create_tree</a></code> </p>
           </td>
           <td><p>Create a tree from text</p></td>
@@ -272,39 +293,9 @@
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="get_transformers_flat.html">get_transformers_flat</a></code> </p>
-          </td>
-          <td><p>Get the transformer functions for flat styling</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_transformers_nested.html">get_transformers_nested</a></code> </p>
-          </td>
-          <td><p>Get the transformer functions for nested styling</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_transformers.html">get_transformers</a></code> </p>
-          </td>
-          <td><p>Get the transformer functions for styling</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
             <p><code><a href="lookup_new_special.html">lookup_new_special</a></code> </p>
           </td>
           <td><p>lookup which new tokens were created from "SPECIAL"</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="make_transformer_flat.html">make_transformer_flat</a></code> </p>
-          </td>
-          <td><p>A Closure to return transformer function</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="make_transformer_nested.html">make_transformer_nested</a></code> </p>
-          </td>
-          <td><p>Closure to return transformer function</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -335,6 +326,18 @@
             <p><code><a href="parse_transform_serialize.html">parse_transform_serialize</a></code> </p>
           </td>
           <td><p>Parse, transform and serialize text</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="pd_is.html">is_curly_expr</a></code> <code><a href="pd_is.html">is_function_call</a></code> </p>
+          </td>
+          <td><p>Check whether a parse table corresponds to a a certain expression</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="prettify_any.html">prettify_any</a></code> </p>
+          </td>
+          <td><p>Prettify R code in current working directory</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -458,6 +461,12 @@
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="tidyverse_style.html">tidyverse_style</a></code> </p>
+          </td>
+          <td><p>The tidyverse style</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="token_is_multi_line.html">token_is_multi_line</a></code> </p>
           </td>
           <td><p>Check whether a parse table is a multi-line token</p></td>
@@ -488,7 +497,13 @@
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="update_indention.html">indent_round</a></code> <code><a href="update_indention.html">indent_curly</a></code> <code><a href="update_indention.html">indent_op</a></code> <code><a href="update_indention.html">indent_assign</a></code> <code><a href="update_indention.html">indent_without_paren</a></code> </p>
+            <p><code><a href="update_indention_ref.html">update_indention_ref_fun_call</a></code> <code><a href="update_indention_ref.html">update_indention_ref_fun_dec</a></code> </p>
+          </td>
+          <td><p>Update the indention reference</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="update_indention.html">indent_round</a></code> <code><a href="update_indention.html">indent_curly</a></code> <code><a href="update_indention.html">indent_op</a></code> <code><a href="update_indention.html">indent_eq_sub</a></code> <code><a href="update_indention.html">indent_assign</a></code> <code><a href="update_indention.html">indent_without_paren</a></code> </p>
           </td>
           <td><p>Update indention information of parse data</p></td>
         </tr><tr>
@@ -531,7 +546,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Kirill Müller.</p>
+  <p>Developed by Kirill Müller, Lorenz Walthert.</p>
 </div>
 
 <div class="pkgdown">

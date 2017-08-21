@@ -74,6 +74,9 @@
       <a href="../articles/data_structures.html">Data Structures</a>
     </li>
     <li>
+      <a href="../articles/gsoc_contrib.html">Google Summer of Code Contributions</a>
+    </li>
+    <li>
       <a href="../articles/manipulating_nested_parse_data.html">Manipulating the nested Parse Table</a>
     </li>
     <li>
@@ -111,24 +114,19 @@
     <p>This is a helper function for style_dir.</p>
     
 
-    <pre class="usage"><span class='fu'>prettify_any</span>(<span class='no'>transformers</span>, <span class='no'>recursive</span>, <span class='no'>flat</span>)</pre>
+    <pre class="usage"><span class='fu'>prettify_any</span>(<span class='no'>transformers</span>, <span class='no'>recursive</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>transformers</th>
-      <td><p>A list with functions to be applied to the parsed data.</p></td>
+      <td><p>A set of transformer functions.</p></td>
     </tr>
     <tr>
       <th>recursive</th>
       <td><p>A logical value indicating whether or not files in subdirectories
 should be styled as well.</p></td>
-    </tr>
-    <tr>
-      <th>flat</th>
-      <td><p>Whether to do the styling with a flat approach or with a nested
-approach.</p></td>
     </tr>
     </table>
     
@@ -145,7 +143,7 @@ approach.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Kirill Müller.</p>
+  <p>Developed by Kirill Müller, Lorenz Walthert.</p>
 </div>
 
 <div class="pkgdown">

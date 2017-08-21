@@ -74,6 +74,9 @@
       <a href="../articles/data_structures.html">Data Structures</a>
     </li>
     <li>
+      <a href="../articles/gsoc_contrib.html">Google Summer of Code Contributions</a>
+    </li>
+    <li>
       <a href="../articles/manipulating_nested_parse_data.html">Manipulating the nested Parse Table</a>
     </li>
     <li>
@@ -113,24 +116,28 @@
 Carefully examine the results after running this function!</p>
     
 
-    <pre class="usage"><span class='fu'>style_pkg</span>(<span class='kw'>pkg</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>flat</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>transformers</span> <span class='kw'>=</span> <span class='fu'><a href='get_transformers.html'>get_transformers</a></span>(<span class='kw'>flat</span> <span class='kw'>=</span>
-  <span class='no'>flat</span>))</pre>
+    <pre class="usage"><span class='fu'>style_pkg</span>(<span class='kw'>pkg</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>...</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='no'>tidyverse_style</span>,
+  <span class='kw'>transformers</span> <span class='kw'>=</span> <span class='fu'>style</span>(<span class='no'>...</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>pkg</th>
-      <td><p>Path to a (subdirectory of an) R package</p></td>
+      <td><p>Path to a (subdirectory of an) R package.</p></td>
     </tr>
     <tr>
-      <th>flat</th>
-      <td><p>Whether to do the styling with a flat approach or with a nested
-approach.</p></td>
+      <th>...</th>
+      <td><p>Passed on to the <code>style</code> function.</p></td>
+    </tr>
+    <tr>
+      <th>style</th>
+      <td><p>The unquoted name of a style guide to use. Will not be used
+further except to construct the argument <code>transformers</code>.</p></td>
     </tr>
     <tr>
       <th>transformers</th>
-      <td><p>A list with functions to be applied to the parsed data.</p></td>
+      <td><p>A set of transformer functions.</p></td>
     </tr>
     </table>
     
@@ -154,7 +161,7 @@ approach.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Kirill Müller.</p>
+  <p>Developed by Kirill Müller, Lorenz Walthert.</p>
 </div>
 
 <div class="pkgdown">

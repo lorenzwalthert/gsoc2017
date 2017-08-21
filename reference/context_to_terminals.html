@@ -74,6 +74,9 @@
       <a href="../articles/data_structures.html">Data Structures</a>
     </li>
     <li>
+      <a href="../articles/gsoc_contrib.html">Google Summer of Code Contributions</a>
+    </li>
+    <li>
       <a href="../articles/manipulating_nested_parse_data.html">Manipulating the nested Parse Table</a>
     </li>
     <li>
@@ -114,7 +117,8 @@ that information regarding indention, linebreaks and spaces (which is
 relative in <code>pd_nested</code>) will be converted into absolute.</p>
     
 
-    <pre class="usage"><span class='fu'>context_to_terminals</span>(<span class='no'>pd_nested</span>, <span class='no'>outer_lag_newlines</span>, <span class='no'>outer_indent</span>, <span class='no'>outer_spaces</span>)</pre>
+    <pre class="usage"><span class='fu'>context_to_terminals</span>(<span class='no'>pd_nested</span>, <span class='no'>outer_lag_newlines</span>, <span class='no'>outer_indent</span>, <span class='no'>outer_spaces</span>,
+  <span class='no'>outer_indention_refs</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -134,6 +138,11 @@ relative in <code>pd_nested</code>) will be converted into absolute.</p>
     <tr>
       <th>outer_spaces</th>
       <td><p>The number of spaces to be propagated inwards.</p></td>
+    </tr>
+    <tr>
+      <th>outer_indention_refs</th>
+      <td><p>The reference id that should be propagated
+inwards.</p></td>
     </tr>
     </table>
     
@@ -162,7 +171,7 @@ relative in <code>pd_nested</code>) will be converted into absolute.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Kirill Müller.</p>
+  <p>Developed by Kirill Müller, Lorenz Walthert.</p>
 </div>
 
 <div class="pkgdown">

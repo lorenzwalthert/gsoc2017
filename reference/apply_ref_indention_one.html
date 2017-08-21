@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get the transformer functions for flat styling — get_transformers_flat • styler</title>
+<title>Applying reference indention of a target token — apply_ref_indention_one • styler</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -74,6 +74,9 @@
       <a href="../articles/data_structures.html">Data Structures</a>
     </li>
     <li>
+      <a href="../articles/gsoc_contrib.html">Google Summer of Code Contributions</a>
+    </li>
+    <li>
       <a href="../articles/manipulating_nested_parse_data.html">Manipulating the nested Parse Table</a>
     </li>
     <li>
@@ -104,38 +107,31 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get the transformer functions for flat styling</h1>
+    <h1>Applying reference indention of a target token</h1>
     </div>
 
     
-    <p>Get the transformer functions for flat styling</p>
+    <p>Applies the indention level of <code>target_token</code> to all tokens that have
+<code>target_token</code> as a reference. This includes adding spaces to the first
+tokens on a line and updating the column <code>col1</code> and <code>col2</code> for all tokens
+on that line so they are kept updated.</p>
     
 
-    <pre class="usage"><span class='fu'>get_transformers_flat</span>(<span class='kw'>strict</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>start_comments_with_one_space</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>apply_ref_indention_one</span>(<span class='no'>flattened_pd</span>, <span class='no'>target_token</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>strict</th>
-      <td><p>A logical value indicating whether a set of strict
-or not so strict transformer functions should be returned.</p></td>
+      <th>flattened_pd</th>
+      <td><p>A flattened parse table</p></td>
     </tr>
     <tr>
-      <th>start_comments_with_one_space</th>
-      <td><p>Whether or not comments should start
-with only one space (see <code><a href='start_comments_with_space.html'>start_comments_with_space()</a></code>).</p></td>
+      <th>target_token</th>
+      <td><p>The index of the token from wich the indention level
+should be applied to other tokens.</p></td>
     </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A list of transformer functions that operate on flat parse
-tables.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <p>Other obtain transformers: <code><a href='get_transformers_nested.html'>get_transformers_nested</a></code></p>
     
 
   </div>
@@ -143,18 +139,14 @@ tables.</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-          </ul>
+                </ul>
 
   </div>
 </div>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Kirill Müller.</p>
+  <p>Developed by Kirill Müller, Lorenz Walthert.</p>
 </div>
 
 <div class="pkgdown">

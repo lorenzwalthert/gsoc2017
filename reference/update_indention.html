@@ -74,6 +74,9 @@
       <a href="../articles/data_structures.html">Data Structures</a>
     </li>
     <li>
+      <a href="../articles/gsoc_contrib.html">Google Summer of Code Contributions</a>
+    </li>
+    <li>
       <a href="../articles/manipulating_nested_parse_data.html">Manipulating the nested Parse Table</a>
     </li>
     <li>
@@ -115,7 +118,10 @@
 
 <span class='fu'>indent_curly</span>(<span class='no'>pd</span>, <span class='no'>indent_by</span>)
 
-<span class='fu'>indent_op</span>(<span class='no'>pd</span>, <span class='no'>indent_by</span>, <span class='kw'>token</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='no'>math_token</span>, <span class='st'>"SPECIAL-PIPE"</span>, <span class='st'>"LEFT_ASSIGN"</span>))
+<span class='fu'>indent_op</span>(<span class='no'>pd</span>, <span class='no'>indent_by</span>, <span class='kw'>token</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='no'>math_token</span>, <span class='no'>logical_token</span>, <span class='no'>special_token</span>,
+  <span class='st'>"LEFT_ASSIGN"</span>, <span class='st'>"'$'"</span>))
+
+<span class='fu'>indent_eq_sub</span>(<span class='no'>pd</span>, <span class='no'>indent_by</span>, <span class='kw'>token</span> <span class='kw'>=</span> <span class='st'>"EQ_SUB"</span>)
 
 <span class='fu'>indent_assign</span>(<span class='no'>pd</span>, <span class='no'>indent_by</span>, <span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
@@ -143,6 +149,10 @@ line break and space information via <code><a href='create_filler.html'>create_f
 
     <ul>
 <li><p><code>indent_round</code>: Inserts indetion based on round brackets.</p></li>
+<li><p><code>indent_op</code>: Indents operatos</p></li>
+<li><p><code>indent_eq_sub</code>: Upates indention for token EQ_SUB. Only differs
+from ident_op in the sense that the last token on the talbe where EQ_SUB
+occurs is not indented (see<code><a href='compute_indent_indices.html'>compute_indent_indices()</a></code>)</p></li>
 <li><p><code>indent_assign</code>: Same as indent_op, but only indents one token
 after <code>token</code>, not all remaining.</p></li>
 <li><p><code>indent_without_paren</code>: Is used to indent if / while / for statements
@@ -164,7 +174,7 @@ that do not have curly brackets.</p></li>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Kirill Müller.</p>
+  <p>Developed by Kirill Müller, Lorenz Walthert.</p>
 </div>
 
 <div class="pkgdown">
