@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Check whether indention is needed — needs_indention • styler</title>
+<title>Create a style guide — create_style_guide • styler</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -107,27 +107,51 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Check whether indention is needed</h1>
+    <h1>Create a style guide</h1>
     </div>
 
     
-    <p>Checks for each potential trigger token in <code>pd</code> whether it actually should
-cause indention.</p>
+    <p>This is a helper function to create a style guide, which is technically
+speaking a named list of groups of transformer functions where each
+transformer function corresponds to one styling rule. The output of this
+function can be used as an argument for <code>style</code> in top level functions
+like <code><a href='style_text.html'>style_text()</a></code> and friends.</p>
     
 
-    <pre class="usage"><span class='fu'>needs_indention</span>(<span class='no'>pd</span>, <span class='no'>potential_triggers</span>)</pre>
+    <pre class="usage"><span class='fu'>create_style_guide</span>(<span class='kw'>filler</span> <span class='kw'>=</span> <span class='no'>create_filler</span>, <span class='kw'>line_break</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>space</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>indention</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>use_raw_indention</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>pd</th>
-      <td><p>A parse table.</p></td>
+      <th>filler</th>
+      <td><p>A filler function that initializes various variables on each
+level of nesting.</p></td>
     </tr>
     <tr>
-      <th>potential_triggers</th>
-      <td><p>A vector with indices of the potential trigger
-tokens in <code>pd</code>.</p></td>
+      <th>line_break</th>
+      <td><p>A list of transformer functiosn that manipulate line_break
+information.</p></td>
+    </tr>
+    <tr>
+      <th>space</th>
+      <td><p>A list of transformer functions that manipulate spacing
+information.</p></td>
+    </tr>
+    <tr>
+      <th>token</th>
+      <td><p>A list of transformer functions that manipulate token text.</p></td>
+    </tr>
+    <tr>
+      <th>indention</th>
+      <td><p>A list of transformer functions that manipulate indention.</p></td>
+    </tr>
+    <tr>
+      <th>use_raw_indention</th>
+      <td><p>Boolean indicating wheter or not the raw indention
+should be used.</p></td>
     </tr>
     </table>
     

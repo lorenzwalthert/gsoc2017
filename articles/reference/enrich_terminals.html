@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Check whether indention is needed — needs_indention • styler</title>
+<title>Enrich flattened parse table — enrich_terminals • styler</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -107,29 +107,44 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Check whether indention is needed</h1>
+    <h1>Enrich flattened parse table</h1>
     </div>
 
     
-    <p>Checks for each potential trigger token in <code>pd</code> whether it actually should
-cause indention.</p>
+    <p>Enriches a flattened parse table with terminals only. In particular, it is
+possible to compute the exact position a token will have (line and column)
+when it will be serialized.</p>
     
 
-    <pre class="usage"><span class='fu'>needs_indention</span>(<span class='no'>pd</span>, <span class='no'>potential_triggers</span>)</pre>
+    <pre class="usage"><span class='fu'>enrich_terminals</span>(<span class='no'>flattened_pd</span>, <span class='kw'>use_raw_indention</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>pd</th>
-      <td><p>A parse table.</p></td>
+      <th>flattened_pd</th>
+      <td><p>A nested parse table that was turned into a flat parse
+table using <code><a href='extract_terminals.html'>extract_terminals()</a></code>.</p></td>
     </tr>
     <tr>
-      <th>potential_triggers</th>
-      <td><p>A vector with indices of the potential trigger
-tokens in <code>pd</code>.</p></td>
+      <th>use_raw_indention</th>
+      <td><p>Boolean indicating wheter or not the raw indention
+should be used.</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Since we have only terminal tokens now, the line on which a token
+starts we also be the line on which it ends. We call <code>line1</code> the line on
+which the token starts. <code>line1</code> has the same meaning as <code>line1</code> that can be
+found in a flat parse table (see <code><a href='tokenize.html'>tokenize()</a></code>), just that the <code>line1</code>
+created by <code>enrich_terminals()</code> is the updated version of the former
+<code>line1</code>. The same applies for <code>col1</code> and <code>col2</code>. Note that this function
+does remove the columns <code>indent</code> and <code>spaces.</code> All information of the former
+is stored in <code>lag_spaces</code> now. The later was removed because it is redundant
+after adding the column <code>lag_spaces</code>, which is more convenient to work with,
+in particular when serializing the parse table.</p>
     
 
   </div>
@@ -137,7 +152,9 @@ tokens in <code>pd</code>.</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#details">Details</a></li>
+          </ul>
 
   </div>
 </div>

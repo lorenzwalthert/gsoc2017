@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Check whether indention is needed — needs_indention • styler</title>
+<title>Parse and pre-process character vector — compute_parse_data_flat_enhanced • styler</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -107,29 +107,47 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Check whether indention is needed</h1>
+    <h1>Parse and pre-process character vector</h1>
     </div>
 
     
-    <p>Checks for each potential trigger token in <code>pd</code> whether it actually should
-cause indention.</p>
+    <p>The function obtains detailed parse information for <code>text</code> via
+<code><a href='http://www.rdocumentation.org/packages/utils/topics/getParseData'>utils::getParseData()</a></code> and does some minimal pre-processing by calling
+<code><a href='enhance_parse_data.html'>enhance_parse_data()</a></code>.</p>
     
 
-    <pre class="usage"><span class='fu'>needs_indention</span>(<span class='no'>pd</span>, <span class='no'>potential_triggers</span>)</pre>
+    <pre class="usage"><span class='fu'>compute_parse_data_flat_enhanced</span>(<span class='no'>text</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>pd</th>
-      <td><p>A parse table.</p></td>
-    </tr>
-    <tr>
-      <th>potential_triggers</th>
-      <td><p>A vector with indices of the potential trigger
-tokens in <code>pd</code>.</p></td>
+      <th>text</th>
+      <td><p>A character vector.</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A pre-processed parse table.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Roughly speaking, this is the inverse operation of
+<code><a href='serialize_parse_data_flat.html'>serialize_parse_data_flat()</a></code>, which turns a parse table into a character
+vector, since <code>compute_parse_data_flat_enhanced()</code> turns a character vector
+into a parse table.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    
+    <p>Preprocessing includes</p><ul>
+<li><p>removing non-terminal entries.</p></li>
+<li><p>removing columns id, parent and terminal.</p></li>
+<li><p>adding a start token.</p></li>
+<li><p>adding line-break and space information.</p></li>
+<li><p>removing spaces in comments at the end of the line.</p></li>
+</ul>
     
 
   </div>
@@ -137,7 +155,13 @@ tokens in <code>pd</code>.</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#details">Details</a></li>
+          </ul>
 
   </div>
 </div>

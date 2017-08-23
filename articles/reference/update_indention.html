@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Check whether indention is needed — needs_indention • styler</title>
+<title>Update indention information of parse data — update_indention • styler</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -107,29 +107,57 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Check whether indention is needed</h1>
+    <h1>Update indention information of parse data</h1>
     </div>
 
     
-    <p>Checks for each potential trigger token in <code>pd</code> whether it actually should
-cause indention.</p>
+    <p>Update indention information of parse data</p>
     
 
-    <pre class="usage"><span class='fu'>needs_indention</span>(<span class='no'>pd</span>, <span class='no'>potential_triggers</span>)</pre>
+    <pre class="usage"><span class='fu'>indent_round</span>(<span class='no'>pd</span>, <span class='no'>indent_by</span>)
+
+<span class='fu'>indent_curly</span>(<span class='no'>pd</span>, <span class='no'>indent_by</span>)
+
+<span class='fu'>indent_op</span>(<span class='no'>pd</span>, <span class='no'>indent_by</span>, <span class='kw'>token</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='no'>math_token</span>, <span class='no'>logical_token</span>, <span class='no'>special_token</span>,
+  <span class='st'>"LEFT_ASSIGN"</span>, <span class='st'>"'$'"</span>))
+
+<span class='fu'>indent_eq_sub</span>(<span class='no'>pd</span>, <span class='no'>indent_by</span>, <span class='kw'>token</span> <span class='kw'>=</span> <span class='st'>"EQ_SUB"</span>)
+
+<span class='fu'>indent_assign</span>(<span class='no'>pd</span>, <span class='no'>indent_by</span>, <span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='fu'>indent_without_paren</span>(<span class='no'>pd</span>, <span class='kw'>indent_by</span> <span class='kw'>=</span> <span class='fl'>2</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>pd</th>
-      <td><p>A parse table.</p></td>
+      <td><p>A nested or flat parse table that is already enhanced with
+line break and space information via <code><a href='create_filler.html'>create_filler()</a></code>.</p></td>
     </tr>
     <tr>
-      <th>potential_triggers</th>
-      <td><p>A vector with indices of the potential trigger
-tokens in <code>pd</code>.</p></td>
+      <th>indent_by</th>
+      <td><p>How many spaces should be added after the token of interest.</p></td>
+    </tr>
+    <tr>
+      <th>token</th>
+      <td><p>The token the indention should be based on.</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
+
+    <ul>
+<li><p><code>indent_round</code>: Inserts indetion based on round brackets.</p></li>
+<li><p><code>indent_op</code>: Indents operatos</p></li>
+<li><p><code>indent_eq_sub</code>: Upates indention for token EQ_SUB. Only differs
+from ident_op in the sense that the last token on the talbe where EQ_SUB
+occurs is not indented (see<code><a href='compute_indent_indices.html'>compute_indent_indices()</a></code>)</p></li>
+<li><p><code>indent_assign</code>: Same as indent_op, but only indents one token
+after <code>token</code>, not all remaining.</p></li>
+<li><p><code>indent_without_paren</code>: Is used to indent if / while / for statements
+that do not have curly brackets.</p></li>
+</ul>
     
 
   </div>
@@ -137,7 +165,9 @@ tokens in <code>pd</code>.</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#functions">Functions</a></li>
+          </ul>
 
   </div>
 </div>

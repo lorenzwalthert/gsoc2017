@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Check whether indention is needed — needs_indention • styler</title>
+<title>Unindent a chlid if necessary — set_unindention_child • styler</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -107,15 +107,15 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Check whether indention is needed</h1>
+    <h1>Unindent a chlid if necessary</h1>
     </div>
 
     
-    <p>Checks for each potential trigger token in <code>pd</code> whether it actually should
-cause indention.</p>
+    <p>check whether any of the children of <code>pd</code> has <code>token</code> on the same line as
+the closing <code>token</code> of pd. If so, unindent that token.</p>
     
 
-    <pre class="usage"><span class='fu'>needs_indention</span>(<span class='no'>pd</span>, <span class='no'>potential_triggers</span>)</pre>
+    <pre class="usage"><span class='fu'>set_unindention_child</span>(<span class='no'>pd</span>, <span class='kw'>token</span> <span class='kw'>=</span> <span class='st'>"')'"</span>, <span class='no'>unindent_by</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -125,9 +125,12 @@ cause indention.</p>
       <td><p>A parse table.</p></td>
     </tr>
     <tr>
-      <th>potential_triggers</th>
-      <td><p>A vector with indices of the potential trigger
-tokens in <code>pd</code>.</p></td>
+      <th>token</th>
+      <td><p>The token the unindention should be based on.</p></td>
+    </tr>
+    <tr>
+      <th>unindent_by</th>
+      <td><p>By how many spaces one level of indention is reversed.</p></td>
     </tr>
     </table>
     

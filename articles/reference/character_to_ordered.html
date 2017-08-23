@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Check whether indention is needed — needs_indention • styler</title>
+<title>Convert a character vector to an ordered factor — character_to_ordered • styler</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -107,27 +107,31 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Check whether indention is needed</h1>
+    <h1>Convert a character vector to an ordered factor</h1>
     </div>
 
     
-    <p>Checks for each potential trigger token in <code>pd</code> whether it actually should
-cause indention.</p>
+    <p>Convert a vector to an ordered factor but stop if any of the values in
+<code>x</code> does not match the predefined levels in <code>levels.</code></p>
     
 
-    <pre class="usage"><span class='fu'>needs_indention</span>(<span class='no'>pd</span>, <span class='no'>potential_triggers</span>)</pre>
+    <pre class="usage"><span class='fu'>character_to_ordered</span>(<span class='no'>x</span>, <span class='no'>levels</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='fu'>substitute</span>(<span class='no'>x</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>pd</th>
-      <td><p>A parse table.</p></td>
+      <th>x</th>
+      <td><p>A character vector.</p></td>
     </tr>
     <tr>
-      <th>potential_triggers</th>
-      <td><p>A vector with indices of the potential trigger
-tokens in <code>pd</code>.</p></td>
+      <th>levels</th>
+      <td><p>A vector with levels.</p></td>
+    </tr>
+    <tr>
+      <th>name</th>
+      <td><p>The name of the character vector to be dispayed if the
+construction of the factor fails.</p></td>
     </tr>
     </table>
     

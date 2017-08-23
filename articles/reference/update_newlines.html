@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Check whether indention is needed — needs_indention • styler</title>
+<title>Update the newlines attribute — update_newlines • styler</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -107,15 +107,20 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Check whether indention is needed</h1>
+    <h1>Update the newlines attribute</h1>
     </div>
 
     
-    <p>Checks for each potential trigger token in <code>pd</code> whether it actually should
-cause indention.</p>
+    <p>As we work only with the <code>lag_newlines</code> attribute for setting the linebreaks,
+(R/rules-line_break.R) but we need <code>newlines</code> to determine
+whether or not to set <code>spaces</code> (R/rules-spacing.R), we have to update the
+attribute. We cannot simply use <code><a href='http://dplyr.tidyverse.org/reference/lead-lag.html'>dplyr::lead(pd$lag_newlines)</a></code> since we would
+lose information for the last token. <code>spaces</code> is left as is in
+R/rules-spacing.R for tokens at the end of a line since this allows styling
+without touching indention.</p>
     
 
-    <pre class="usage"><span class='fu'>needs_indention</span>(<span class='no'>pd</span>, <span class='no'>potential_triggers</span>)</pre>
+    <pre class="usage"><span class='fu'>update_newlines</span>(<span class='no'>pd</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -124,12 +129,15 @@ cause indention.</p>
       <th>pd</th>
       <td><p>A parse table.</p></td>
     </tr>
-    <tr>
-      <th>potential_triggers</th>
-      <td><p>A vector with indices of the potential trigger
-tokens in <code>pd</code>.</p></td>
-    </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A parse table with syncronized <code>lag_newlines</code> and <code>newlines</code> columns.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <p>choose_indention</p>
     
 
   </div>
@@ -137,7 +145,11 @@ tokens in <code>pd</code>.</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#see-also">See also</a></li>
+          </ul>
 
   </div>
 </div>

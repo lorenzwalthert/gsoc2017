@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Check whether indention is needed — needs_indention • styler</title>
+<title>Check whether a parse table corresponds to a a certain expression — pd_is • styler</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -107,15 +107,16 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Check whether indention is needed</h1>
+    <h1>Check whether a parse table corresponds to a a certain expression</h1>
     </div>
 
     
-    <p>Checks for each potential trigger token in <code>pd</code> whether it actually should
-cause indention.</p>
+    <p>Check whether a parse table corresponds to a a certain expression</p>
     
 
-    <pre class="usage"><span class='fu'>needs_indention</span>(<span class='no'>pd</span>, <span class='no'>potential_triggers</span>)</pre>
+    <pre class="usage"><span class='fu'>is_curly_expr</span>(<span class='no'>pd</span>)
+
+<span class='fu'>is_function_call</span>(<span class='no'>pd</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -124,12 +125,15 @@ cause indention.</p>
       <th>pd</th>
       <td><p>A parse table.</p></td>
     </tr>
-    <tr>
-      <th>potential_triggers</th>
-      <td><p>A vector with indices of the potential trigger
-tokens in <code>pd</code>.</p></td>
-    </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
+
+    <ul>
+<li><p><code>is_curly_expr</code>: Checks whether <code>pd</code> contains an expression wrapped in
+curley brackets.</p></li>
+<li><p><code>is_function_call</code>: Checks whether <code>pd</code> is a function call.</p></li>
+</ul>
     
 
   </div>
@@ -137,7 +141,9 @@ tokens in <code>pd</code>.</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#functions">Functions</a></li>
+          </ul>
 
   </div>
 </div>

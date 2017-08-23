@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Check whether indention is needed — needs_indention • styler</title>
+<title>Set line break for multi-line function calls — set_line_break_if_call_is_multi_line • styler</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -107,15 +107,18 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Check whether indention is needed</h1>
+    <h1>Set line break for multi-line function calls</h1>
     </div>
 
     
-    <p>Checks for each potential trigger token in <code>pd</code> whether it actually should
-cause indention.</p>
+    <p>Set line break for multi-line function calls</p>
     
 
-    <pre class="usage"><span class='fu'>needs_indention</span>(<span class='no'>pd</span>, <span class='no'>potential_triggers</span>)</pre>
+    <pre class="usage"><span class='fu'>set_line_break_after_opening_if_call_is_multi_line</span>(<span class='no'>pd</span>, <span class='kw'>except_token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='fu'>set_line_break_before_closing_if_call_is_multi_line</span>(<span class='no'>pd</span>)
+
+<span class='fu'>remove_line_break_in_empty_fun_call</span>(<span class='no'>pd</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -125,11 +128,19 @@ cause indention.</p>
       <td><p>A parse table.</p></td>
     </tr>
     <tr>
-      <th>potential_triggers</th>
-      <td><p>A vector with indices of the potential trigger
-tokens in <code>pd</code>.</p></td>
+      <th>except_token</th>
+      <td><p>A character vector with tokens before "'('" that do not</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
+
+    <ul>
+<li><p><code>set_line_break_after_opening_if_call_is_multi_line</code>: Sets line break after
+opening parenthesis.</p></li>
+<li><p><code>set_line_break_before_closing_if_call_is_multi_line</code>: Sets line break before
+closing parenthesis.</p></li>
+</ul>
     
 
   </div>
@@ -137,7 +148,9 @@ tokens in <code>pd</code>.</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#functions">Functions</a></li>
+          </ul>
 
   </div>
 </div>

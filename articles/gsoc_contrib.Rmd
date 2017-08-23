@@ -1,0 +1,99 @@
+---
+title: "Google Summer of Code Contributions"
+author: "Lorenz Walthert"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Google Summer of Code Contributions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This vigette aims to summarize the contributions made to styler through 
+Google Summer of Code 2017.
+
+# High-level overview
+The author 
+
+* opened over [60](https://github.com/krlmlr/styler/issues?utf8=✓&q=is%3Aopen%20is%3Aissue%20author%3Alorenzwalthert%20created%3A%3C2017-08-31%20%20created%3A%3E2017-06-01%20) issues and closed the majority of them with his own pull requests.
+* created more than [60](https://github.com/krlmlr/styler/pulls?q=is%3Apr+author%3Alorenzwalthert+created%3A%3C2017-08-31++created%3A%3E2017-06-01) pull requests to
+  master of which the vast majority was merged.
+
+The activity during GSOC can be grouped into the following steps:
+
+* Replicating the outcomes that were achieved with flat styling with nested 
+  styling. Required implementeation of the visitor as well as different 
+  serialization method.
+* Adding functionality that was only possible with the nested styling such 
+  as indention based on operators (`+`, `%>%` etc.), braces `{` and `(`. 
+  the use of raw indention, allowing for token-dependent re-indention.
+* Infrastructure changes such as serialized testing, improve performance, 
+  create mutli-line attribute, code refactoring. Partially
+  flattening out the nested parse table.
+* Extending the functionality that was not there with the flat approach. 
+  Examples include styling multiple expressions, token replacement (e.g. `<-` for 
+  `=`), line break rules (invasive and non-invaive), token insertion (`()` in 
+  function calls within pipes), RStudio Addins, styling of comments, styling of 
+  a single file, public api redesign, spacing around more operators (colons, 
+  commas, infix operators, bang-bang).
+
+The list above is not comprehensive and covers only the large contributions.
+Always along with coding, documentation and tests were provided.
+
+# Low-level analysis
+
+We can use the package `gitsum` to perform an analysis of the GitHub repository.
+```{r, message = FALSE}
+library("gitsum")
+library("tidyverse")
+log <- git_log_detailed() %>%
+  filter(date > as.Date("2017-06-01"), date < as.Date("2017-08-31"))
+```
+
+We can see that the vast majority of the commits in this period comes from the 
+student and a few from the main mentor.
+```{r}
+log %>%
+  group_by(author_name) %>%
+  count()
+```
+
+
+We can also look at how the number of lines in the different files eveolved
+```{r}
+lines <- log %>%
+  add_line_history()
+
+r_files <- grep("^R/", lines$changed_file, value = TRUE)
+
+to_plot <- lines %>%
+  filter(changed_file %in% r_files) %>%
+  group_by(changed_file) %>%
+  mutate(has_changed = n() > 1) %>%
+  filter(has_changed)
+  
+ggplot(to_plot, aes(x = date, y = current_lines)) + 
+  geom_step() + 
+  scale_y_continuous(name = "Number of Lines", limits = c(0, NA)) + 
+  facet_wrap(~changed_file, scales = "free_y")
+```
+
+The total number of insertions and deletions by the author is
+```{r}
+log %>%
+  filter(author_name == "Lorenz Walthert") %>%
+  summarize(sum(total_insertions) + sum(total_deletions)) %>%
+  pull()
+```
+
+Which still contains many insertions and deletions in some files that were
+generated as a biproduct, so let's focus on the code in the `R` directory.
+
+```{r}
+log %>%
+  unnest() %>%
+  filter(dirname(changed_file) == "R") %>%
+  summarize(sum(insertions) + sum(deletions)) %>%
+  pull()
+```
+

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Check whether indention is needed — needs_indention • styler</title>
+<title>Flatten a parse table — flatten_pd • styler</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -107,27 +107,40 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Check whether indention is needed</h1>
+    <h1>Flatten a parse table</h1>
     </div>
 
     
-    <p>Checks for each potential trigger token in <code>pd</code> whether it actually should
-cause indention.</p>
+    <p>Flattens a parse table if certain tokens occur in this table or its child,
+either flattening from left or from right. If one of <code>token</code> is present in
+<code>pd_nested</code>  and one of <code>child_token</code> is present in one of the children next
+to <code>token</code> in <code>pd_nested</code>, the nested parse table is flattened. Otherwise, it
+is returned unodified.</p>
     
 
-    <pre class="usage"><span class='fu'>needs_indention</span>(<span class='no'>pd</span>, <span class='no'>potential_triggers</span>)</pre>
+    <pre class="usage"><span class='fu'>flatten_pd</span>(<span class='no'>pd_nested</span>, <span class='no'>token</span>, <span class='kw'>child_token</span> <span class='kw'>=</span> <span class='no'>token</span>, <span class='kw'>left</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>pd</th>
-      <td><p>A parse table.</p></td>
+      <th>pd_nested</th>
+      <td><p>A nested parse table.</p></td>
     </tr>
     <tr>
-      <th>potential_triggers</th>
-      <td><p>A vector with indices of the potential trigger
-tokens in <code>pd</code>.</p></td>
+      <th>token</th>
+      <td><p>A character vector with tokens of which at least one has to
+occur in <code>pd_nested</code> in order to flatten it.</p></td>
+    </tr>
+    <tr>
+      <th>child_token</th>
+      <td><p>A character vector of tokens of which at least one has to
+occur in the child in order to flatten the parse table.</p></td>
+    </tr>
+    <tr>
+      <th>left</th>
+      <td><p>Flag that indicates whether the parse table should be flattened
+from left or from right.</p></td>
     </tr>
     </table>
     
