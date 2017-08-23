@@ -87,26 +87,37 @@
       <h1>Google Summer of Code Contributions</h1>
                         <h4 class="author">Lorenz Walthert</h4>
             
-            <h4 class="date">2017-08-21</h4>
+            <h4 class="date">2017-08-23</h4>
           </div>
 
     
     
 <div class="contents">
 <p>This vigette aims to summarize the contributions made to styler through Google Summer of Code 2017.</p>
+<div id="high-level-overview" class="section level1">
+<h1 class="hasAnchor">
+<a href="#high-level-overview" class="anchor"></a>High-level overview</h1>
+<p>The author</p>
+<ul>
+<li>opened over <a href="https://github.com/krlmlr/styler/issues?utf8=%E2%9C%93&amp;q=is%3Aopen%20is%3Aissue%20author%3Alorenzwalthert%20created%3A%3C2017-08-31%20%20created%3A%3E2017-06-01%20">60</a> issues and closed the majority of them with his own pull requests.</li>
+<li>created more than <a href="https://github.com/krlmlr/styler/pulls?q=is%3Apr+author%3Alorenzwalthert+created%3A%3C2017-08-31++created%3A%3E2017-06-01">60</a> pull requests to master of which the vast majority was merged.</li>
+</ul>
+<p>The activity during GSOC can be grouped into the following steps:</p>
+<ul>
+<li>Replicating the outcomes that were achieved with flat styling with nested styling. Required implementeation of the visitor as well as different serialization method.</li>
+<li>Adding functionality that was only possible with the nested styling such as indention based on operators (<code>+</code>, <code>%&gt;%</code> etc.), braces <code>{</code> and <code>(</code>. the use of raw indention, allowing for token-dependent re-indention.</li>
+<li>Infrastructure changes such as serialized testing, improve performance, create mutli-line attribute, code refactoring. Partially flattening out the nested parse table.</li>
+<li>Extending the functionality that was not there with the flat approach. Examples include styling multiple expressions, token replacement (e.g. <code>&lt;-</code> for <code>=</code>), line break rules (invasive and non-invaive), token insertion (<code>()</code> in function calls within pipes), RStudio Addins, styling of comments, styling of a single file, public api redesign, spacing around more operators (colons, commas, infix operators, bang-bang).</li>
+</ul>
+<p>The list above is not comprehensive and covers only the large contributions. Always along with coding, documentation and tests were provided.</p>
+</div>
+<div id="low-level-analysis" class="section level1">
+<h1 class="hasAnchor">
+<a href="#low-level-analysis" class="anchor"></a>Low-level analysis</h1>
 <p>We can use the package <code>gitsum</code> to perform an analysis of the GitHub repository.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"gitsum"</span>)
-<span class="kw">library</span>(<span class="st">"tidyverse"</span>)</code></pre></div>
-<pre><code>## Loading tidyverse: ggplot2
-## Loading tidyverse: tibble
-## Loading tidyverse: tidyr
-## Loading tidyverse: readr
-## Loading tidyverse: purrr
-## Loading tidyverse: dplyr</code></pre>
-<pre><code>## Conflicts with tidy packages ----------------------------------------------</code></pre>
-<pre><code>## filter(): dplyr, stats
-## lag():    dplyr, stats</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">log &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/gitsum/topics/git_log_detailed">git_log_detailed</a></span>() <span class="op">%&gt;%</span>
+<span class="kw">library</span>(<span class="st">"tidyverse"</span>)
+log &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/gitsum/topics/git_log_detailed">git_log_detailed</a></span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(date <span class="op">&gt;</span><span class="st"> </span><span class="kw">as.Date</span>(<span class="st">"2017-06-01"</span>), date <span class="op">&lt;</span><span class="st"> </span><span class="kw">as.Date</span>(<span class="st">"2017-08-31"</span>))</code></pre></div>
 <p>We can see that the vast majority of the commits in this period comes from the student and a few from the main mentor.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">log <span class="op">%&gt;%</span>
@@ -117,38 +128,50 @@
 ##       author_name     n
 ##             &lt;chr&gt; &lt;int&gt;
 ## 1   Kirill Müller    53
-## 2 Lorenz Walthert   315</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">all_issues &lt;-<span class="st"> </span>gh<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/gh/topics/gh">gh</a></span>(<span class="st">"/repos/krlmlr/styler/issues"</span>, <span class="dt">state =</span> <span class="st">"all"</span>, <span class="dt">filter =</span> <span class="st">"all"</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">lapply</span>(<span class="st">"["</span>)
-  
-issue_author &lt;-<span class="st"> </span>
-<span class="st">  </span>all_issues <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">map</span>(<span class="st">"user"</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">map</span>(<span class="st">"login"</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">flatten_chr</span>()
+## 2 Lorenz Walthert   342</code></pre>
+<p>We can also look at how the number of lines in the different files eveolved</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lines &lt;-<span class="st"> </span>log <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/gitsum/topics/add_line_history">add_line_history</a></span>()
 
-issue_date &lt;-<span class="st"> </span>
-<span class="st">  </span>all_issues <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">map</span>(<span class="st">"created_at"</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">flatten_chr</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">as.Date</span>()
-  
-tabular_issue &lt;-<span class="st"> </span><span class="kw">data_frame</span>(<span class="dt">author_name =</span> issue_author, <span class="dt">date =</span> issue_date)
+r_files &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="st">"^R/"</span>, lines<span class="op">$</span>changed_file, <span class="dt">value =</span> <span class="ot">TRUE</span>)
 
-tabular_issue <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(date <span class="op">&gt;</span><span class="st"> </span><span class="kw">as.Date</span>(<span class="st">"2017-06-01"</span>), date <span class="op">&lt;</span><span class="st"> </span><span class="kw">as.Date</span>(<span class="st">"2017-08-31"</span>)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(author_name) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">count</span>()</code></pre></div>
-<pre><code>## # A tibble: 2 x 2
-## # Groups:   author_name [2]
-##      author_name     n
-##            &lt;chr&gt; &lt;int&gt;
-## 1         krlmlr     3
-## 2 lorenzwalthert    27</code></pre>
+to_plot &lt;-<span class="st"> </span>lines <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(changed_file <span class="op">%in%</span><span class="st"> </span>r_files) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(changed_file) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">has_changed =</span> <span class="kw">n</span>() <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(has_changed)
+  
+<span class="kw">ggplot</span>(to_plot, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> current_lines)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_step</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">name =</span> <span class="st">"Number of Lines"</span>, <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="ot">NA</span>)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>changed_file, <span class="dt">scales =</span> <span class="st">"free_y"</span>)</code></pre></div>
+<p><img src="gsoc_contrib_files/figure-html/unnamed-chunk-3-1.png" width="672"></p>
+<p>The total number of insertions and deletions by the author is</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">log <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(author_name <span class="op">==</span><span class="st"> "Lorenz Walthert"</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="kw">sum</span>(total_insertions) <span class="op">+</span><span class="st"> </span><span class="kw">sum</span>(total_deletions)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">pull</span>()</code></pre></div>
+<pre><code>## [1] 24096</code></pre>
+<p>Which still contains many insertions and deletions in some files that were generated as a biproduct, so let’s focus on the code in the <code>R</code> directory.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">log <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">unnest</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="kw">dirname</span>(changed_file) <span class="op">==</span><span class="st"> "R"</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="kw">sum</span>(insertions) <span class="op">+</span><span class="st"> </span><span class="kw">sum</span>(deletions)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">pull</span>()</code></pre></div>
+<pre><code>## [1] 5459</code></pre>
+</div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+        <div id="tocnav">
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+<li><a href="#high-level-overview">High-level overview</a></li>
+      <li><a href="#low-level-analysis">Low-level analysis</a></li>
+      </ul>
+</div>
       </div>
 
 </div>
