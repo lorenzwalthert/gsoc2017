@@ -68,16 +68,16 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/customizing-styler.html">Customizing styler</a>
-    </li>
-    <li>
-      <a href="../articles/data_structures.html">Data Structures</a>
+      <a href="../articles/customizing_styler.html">Customizing styler</a>
     </li>
     <li>
       <a href="../articles/gsoc_contrib.html">Google Summer of Code Contributions</a>
     </li>
     <li>
-      <a href="../articles/manipulating_nested_parse_data.html">Manipulating the nested Parse Table</a>
+      <a href="../articles/gsoc_proposal/data_structures.html">Data Structures</a>
+    </li>
+    <li>
+      <a href="../articles/gsoc_proposal/manipulating_nested_parse_data.html">Manipulating the nested parse table</a>
     </li>
     <li>
       <a href="../articles/performance_improvements.html">Performance Improvements</a>
@@ -112,6 +112,39 @@
     </div>
 
     <div class="contents">
+    <div id="styler-0-0-8-2017-08-24" class="section level2">
+<h2 class="hasAnchor">
+<a href="#styler-0-0-8-2017-08-24" class="anchor"></a>styler 0.0-8 (2017-08-24)</h2>
+<ul>
+<li>Vignette on customizing styler (#145).</li>
+<li>No line break after <code>switch()</code> and friends (#152).</li>
+<li>Remove flat relicts completely (#151).</li>
+<li>Don’t reindent function calls and break line correctly for multi-line calls (#149).</li>
+<li>Set space between “=” and “,” (#150).</li>
+<li>Make R CMD Check perfect (#148).</li>
+<li>Adding tests for exception handling with invalid parse data (#139).</li>
+<li>Fix indention by checking for all potential triggers (#142).</li>
+<li>Fix un-indention (#135).</li>
+<li>Support wide characters (#130).</li>
+<li>No spaces around :, :: and :::.</li>
+<li>Redesigning the API (#123).</li>
+<li>Solve eq_sub indention in general (#125).</li>
+<li>Minor refactorings.</li>
+<li>Re-indent token-dependent (#119).</li>
+<li>Supporting more indention patterns.</li>
+<li>Allow raw indention.</li>
+<li>Definitively fixing eol issue with comments.</li>
+<li>Infrastructure.</li>
+<li>Flattening out the parse table.</li>
+<li>New rule: no space after ! -&gt; !!! for tidyeval.</li>
+<li>Fix spacing around ‘{’.</li>
+<li>Don’t drop tokens! Fixes #101.</li>
+<li>EOL spaces in empty comments (and in general) (#98).</li>
+<li>mal-indention in conditional statement due to wrong specification of indent_without_paren) (#95).</li>
+<li>Complicated indentions based on arithmetic and special operators (#96).</li>
+<li>indention interaction on with assignment operator and other operators (#97).</li>
+</ul>
+</div>
     <div id="styler-0-0-7-2017-07-27" class="section level2">
 <h2 class="hasAnchor">
 <a href="#styler-0-0-7-2017-07-27" class="anchor"></a>styler 0.0-7 (2017-07-27)</h2>
@@ -202,6 +235,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#styler-0-0-8-2017-08-24">0.0-8</a></li>
         <li><a href="#styler-0-0-7-2017-07-27">0.0-7</a></li>
         <li><a href="#styler-0-0-6-2017-07-10">0.0-6</a></li>
         <li><a href="#styler-0-0-5-2017-06-30">0.0-5</a></li>

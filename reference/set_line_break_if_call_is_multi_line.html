@@ -68,16 +68,16 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/customizing-styler.html">Customizing styler</a>
-    </li>
-    <li>
-      <a href="../articles/data_structures.html">Data Structures</a>
+      <a href="../articles/customizing_styler.html">Customizing styler</a>
     </li>
     <li>
       <a href="../articles/gsoc_contrib.html">Google Summer of Code Contributions</a>
     </li>
     <li>
-      <a href="../articles/manipulating_nested_parse_data.html">Manipulating the nested Parse Table</a>
+      <a href="../articles/gsoc_proposal/data_structures.html">Data Structures</a>
+    </li>
+    <li>
+      <a href="../articles/gsoc_proposal/manipulating_nested_parse_data.html">Manipulating the nested parse table</a>
     </li>
     <li>
       <a href="../articles/performance_improvements.html">Performance Improvements</a>
@@ -114,7 +114,8 @@
     <p>Set line break for multi-line function calls</p>
     
 
-    <pre class="usage"><span class='fu'>set_line_break_after_opening_if_call_is_multi_line</span>(<span class='no'>pd</span>, <span class='kw'>except_token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>set_line_break_after_opening_if_call_is_multi_line</span>(<span class='no'>pd</span>,
+  <span class='kw'>except_token_after</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>except_text_before</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='fu'>set_line_break_before_closing_if_call_is_multi_line</span>(<span class='no'>pd</span>)
 
@@ -128,8 +129,14 @@
       <td><p>A parse table.</p></td>
     </tr>
     <tr>
-      <th>except_token</th>
-      <td><p>A character vector with tokens before "'('" that do not</p></td>
+      <th>except_token_after</th>
+      <td><p>A character vector with tokens after "'('" that do
+not cause a line break after "'('".</p></td>
+    </tr>
+    <tr>
+      <th>except_text_before</th>
+      <td><p>A character vector with texts before "'('" that do
+not cause a line break after "'('".</p></td>
     </tr>
     </table>
     

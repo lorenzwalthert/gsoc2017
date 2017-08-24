@@ -68,16 +68,16 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/customizing-styler.html">Customizing styler</a>
-    </li>
-    <li>
-      <a href="../articles/data_structures.html">Data Structures</a>
+      <a href="../articles/customizing_styler.html">Customizing styler</a>
     </li>
     <li>
       <a href="../articles/gsoc_contrib.html">Google Summer of Code Contributions</a>
     </li>
     <li>
-      <a href="../articles/manipulating_nested_parse_data.html">Manipulating the nested Parse Table</a>
+      <a href="../articles/gsoc_proposal/data_structures.html">Data Structures</a>
+    </li>
+    <li>
+      <a href="../articles/gsoc_proposal/manipulating_nested_parse_data.html">Manipulating the nested parse table</a>
     </li>
     <li>
       <a href="../articles/performance_improvements.html">Performance Improvements</a>
@@ -131,29 +131,7 @@ representation into a nested parse table with
 
     <p>A nested parse table. Apart from the columns provided by
 <code><a href='http://www.rdocumentation.org/packages/utils/topics/getParseData'>utils::getParseData()</a></code>, a column "short" with the first five characters of
-"text" is added, the nested subtibbles are in column "child".
-TODO:</p><ul>
-<li><p>Implement enhance_parse_data_nested()</p><ul>
-<li><p>Walk tree defined by <code>child</code>, compute whitespace information</p></li>
-<li><p>Store indention depth in a separate column, unaffected by
-inter-token space</p></li>
-</ul></li>
-<li><p>Implement compute_parse_data_nested_with_ws() as
-compute_parse_data_nested() + enhance_parse_data_nested()</p></li>
-<li><p>Implement serialization of nested parse data</p></li>
-<li><p>Use compute_parse_data_nested_with_ws() instead of
-compute_parse_data_flat_enhanced()</p></li>
-<li><p>Perform all transformations on hierarchical structure</p><ul>
-<li><p>Compute text for a sub-element</p></li>
-</ul></li>
-<li><p>Compute indentation</p><ul>
-<li><p>Braces</p></li>
-<li><p>Function calls</p></li>
-<li><p>Function definitions</p></li>
-</ul></li>
-<li><p>Remove <code>includeText = TRUE</code></p></li>
-</ul>
-
+"text" is added, the nested subtibbles are in column "child".</p>
     
 
   </div>

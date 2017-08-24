@@ -68,16 +68,16 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/customizing-styler.html">Customizing styler</a>
-    </li>
-    <li>
-      <a href="../articles/data_structures.html">Data Structures</a>
+      <a href="../articles/customizing_styler.html">Customizing styler</a>
     </li>
     <li>
       <a href="../articles/gsoc_contrib.html">Google Summer of Code Contributions</a>
     </li>
     <li>
-      <a href="../articles/manipulating_nested_parse_data.html">Manipulating the nested Parse Table</a>
+      <a href="../articles/gsoc_proposal/data_structures.html">Data Structures</a>
+    </li>
+    <li>
+      <a href="../articles/gsoc_proposal/manipulating_nested_parse_data.html">Manipulating the nested parse table</a>
     </li>
     <li>
       <a href="../articles/performance_improvements.html">Performance Improvements</a>
@@ -111,7 +111,7 @@
     </div>
 
     
-    <p>The tidyverse style</p>
+    <p>Style code according to the tidyverse style guide.</p>
     
 
     <pre class="usage"><span class='fu'>tidyverse_style</span>(<span class='kw'>scope</span> <span class='kw'>=</span> <span class='st'>"tokens"</span>, <span class='kw'>strict</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>indent_by</span> <span class='kw'>=</span> <span class='fl'>2</span>,
@@ -125,11 +125,6 @@
       <td><p>The extent of manipulation. Can range from "none" (least
 invasive) to "token" (most invasive). See 'Details'. This argument is a
 vector of length one.</p></td>
-    </tr>
-    <tr>
-      <th>strict</th>
-      <td><p>A logical value indicating whether a set of strict
-or not so strict transformer functions should be returned.</p></td>
     </tr>
     <tr>
       <th>indent_by</th>
@@ -159,6 +154,14 @@ tokens.</p></li>
 be performed if all less invasive operations are performed too.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>style_text("call( 1)", style = tidyverse, scope = "spaces")
+style_text(c("ab <- 3", "a  <-3", strict = FALSE) # keeps alignment of "<-"
+style_text(c("ab <- 3", "a  <-3", strict = FALSE) # drops alignment of "<-"
+</div><div class='output co'>#&gt; <span class='error'>Error: &lt;text&gt;:3:1: unexpected symbol</span>
+#&gt; <span class='error'>2: style_text(c("ab &lt;- 3", "a  &lt;-3", strict = FALSE) # keeps alignment of "&lt;-"</span>
+#&gt; <span class='error'>3: style_text</span>
+#&gt; <span class='error'>   ^</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -166,7 +169,9 @@ be performed if all less invasive operations are performed too.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#details">Details</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
