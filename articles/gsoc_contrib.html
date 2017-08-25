@@ -100,7 +100,8 @@
 <p>As a warm-up, we want to give a few examples of how styler styles code. It’s possible to use different levels of invasiveness, as described in the help file for the style guide we implemented, which is the <a href="http://style.tidyverse.org/index.html">tidyverse style guide</a>. For example, we can limit ourselves to styling just spacing information.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"styler"</span>)
 <span class="kw">library</span>(<span class="st">"magrittr"</span>)
-<span class="kw"><a href="../reference/style_text.html">style_text</a></span>(<span class="st">"a=3; 2"</span>, <span class="dt">scope =</span> <span class="st">"spaces"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">cat</span>()</code></pre></div>
+<span class="kw"><a href="../reference/style_text.html">style_text</a></span>(<span class="st">"a=3; 2"</span>, <span class="dt">scope =</span> <span class="st">"spaces"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">cat</span>()</code></pre></div>
 <pre><code>a = 3; 2</code></pre>
 <p>Or, on the other extreme of the scale, styling spaces, indention, line breaks and tokens:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/style_text.html">style_text</a></span>(<span class="st">"a=3; 2"</span>, <span class="dt">scope =</span> <span class="st">"tokens"</span>) <span class="op">%&gt;%</span>
@@ -121,12 +122,12 @@
   large  = 6
 )</code></pre>
 <p>I hope these examples showed you some of the options available in styler. Let us for now focus on a configuration with <code>strict = TRUE</code> and <code>scope = "tokens"</code> and therefore only show code before and after styling.</p>
-<p>styler can distinguish unary operators and other math tokens</p>
+<p>styler can distinguish unary operators and other math tokens:</p>
 <pre class="styler"><code># Before
 1++1-1-1/2</code></pre>
 <pre><code># After
 1 + +1 - 1 - 1 / 2</code></pre>
-<p>It can also format complicated expressions that involve line breaking and indention based on both brace expressions and operators</p>
+<p>It can also format complicated expressions that involve line breaking and indention based on both brace expressions and operators:</p>
 <pre class="styler"><code># Before
 if (x &gt;3) {stop("this is an error")} else {
 c(there_are_fairly_long,
@@ -185,10 +186,10 @@ my_fun &lt;- function(x,
 <p>Styler can also deal with tidyeval syntax</p>
 <pre class="styler"><code># Before
 mtcars %&gt;%
-  group_by(!!!my_vars)</code></pre>
+  group_by(! !! my_vars)</code></pre>
 <pre><code># After
 mtcars %&gt;%
-  group_by(!!!my_vars)</code></pre>
+  group_by(!!! my_vars)</code></pre>
 </div>
 <div id="contributions-to-styler-during-gsoc" class="section level1">
 <h1 class="hasAnchor">
@@ -231,7 +232,7 @@ log &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocument
       author_name     n
             &lt;chr&gt; &lt;int&gt;
 1   Kirill Müller    60
-2 Lorenz Walthert   357</code></pre>
+2 Lorenz Walthert   360</code></pre>
 <p>We can also look at how the number of lines in the different files evolved:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lines &lt;-<span class="st"> </span>log <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/gitsum/topics/add_line_history">add_line_history</a></span>()
@@ -254,14 +255,14 @@ to_plot &lt;-<span class="st"> </span>lines <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(author_name <span class="op">==</span><span class="st"> "Lorenz Walthert"</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="kw">sum</span>(total_insertions) <span class="op">+</span><span class="st"> </span><span class="kw">sum</span>(total_deletions)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">pull</span>()</code></pre></div>
-<pre><code>[1] 26317</code></pre>
+<pre><code>[1] 26541</code></pre>
 <p>Which still contains many insertions and deletions in some files that were generated as a bi-product, so let’s focus on the code in the <code>R</code> directory.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">log <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">unnest</span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(<span class="kw">dirname</span>(changed_file) <span class="op">==</span><span class="st"> "R"</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="kw">sum</span>(insertions) <span class="op">+</span><span class="st"> </span><span class="kw">sum</span>(deletions)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">pull</span>()</code></pre></div>
-<pre><code>[1] 5703</code></pre>
+<pre><code>[1] 5711</code></pre>
 <p>The core code with .R file only consists of</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">log <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">unnest</span>() <span class="op">%&gt;%</span>
@@ -269,7 +270,7 @@ to_plot &lt;-<span class="st"> </span>lines <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="kw">sum</span>(insertions) <span class="op">-</span><span class="st"> </span><span class="kw">sum</span>(deletions)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">pull</span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">cat</span>(<span class="st">"lines"</span>)</code></pre></div>
-<pre><code>3964 lines</code></pre>
+<pre><code>3972 lines</code></pre>
 </div>
 <div id="final-remarks" class="section level1">
 <h1 class="hasAnchor">
