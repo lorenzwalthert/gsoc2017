@@ -87,14 +87,17 @@
       <h1>Google Summer of Code Contributions</h1>
                         <h4 class="author">Lorenz Walthert</h4>
             
-            <h4 class="date">2017-08-24</h4>
+            <h4 class="date">2017-08-25</h4>
           </div>
 
     
     
 <div class="contents">
-<p>This vigette aims to summarize the contributions made to styler through Google Summer of Code 2017.</p>
-<p>As a warm-up, we want to give a few examples of how styler styles code. It’s possible to use different levels of invasiveness, as described in the help file for the style guide we implemented, which is the <a href="http://style.tidyverse.org/index.html">tidyverse style guide</a>. For example, we can limit ourselfs to styling just spacing information.</p>
+<p>This vignette aims to summarize the contributions made to styler through Google Summer of Code 2017.</p>
+<div id="styler-in-practice" class="section level1">
+<h1 class="hasAnchor">
+<a href="#styler-in-practice" class="anchor"></a>Styler in practice</h1>
+<p>As a warm-up, we want to give a few examples of how styler styles code. It’s possible to use different levels of invasiveness, as described in the help file for the style guide we implemented, which is the <a href="http://style.tidyverse.org/index.html">tidyverse style guide</a>. For example, we can limit ourselves to styling just spacing information.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"styler"</span>)
 <span class="kw">library</span>(<span class="st">"magrittr"</span>)
 <span class="kw"><a href="../reference/style_text.html">style_text</a></span>(<span class="st">"a=3; 2"</span>, <span class="dt">scope =</span> <span class="st">"spaces"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">cat</span>()</code></pre></div>
@@ -152,7 +155,7 @@ do_a_long_and_complicated_fun_cal(
   "which", has, way, to,
   "and longer then lorem ipsum in its full length"
 )</code></pre>
-<p>Styler converges <code>=</code> assignment, Single quotes if necessary, adds braces to function calls in pipies</p>
+<p>Styler converges <code>=</code> assignment, Single quotes if necessary, adds braces to function calls in pipes</p>
 <pre class="styler"><code># Before
 one= 'one string'
 two= "one string in a 'string'"
@@ -186,29 +189,36 @@ mtcars %&gt;%
 <pre><code># After
 mtcars %&gt;%
   group_by(!!!my_vars)</code></pre>
-<div id="high-level-overview" class="section level1">
+</div>
+<div id="contributions-to-styler-during-gsoc" class="section level1">
 <h1 class="hasAnchor">
-<a href="#high-level-overview" class="anchor"></a>High-level overview</h1>
-<p>The author</p>
+<a href="#contributions-to-styler-during-gsoc" class="anchor"></a>Contributions to styler during GSOC</h1>
+<p>The author, with the help of his mentors,</p>
 <ul>
 <li>opened over <a href="https://github.com/krlmlr/styler/issues?utf8=%E2%9C%93&amp;q=is%3Aopen%20is%3Aissue%20author%3Alorenzwalthert%20created%3A%3C2017-08-31%20%20created%3A%3E2017-06-01%20">60</a> issues and closed the majority of them with his own pull requests.</li>
 <li>created more than <a href="https://github.com/krlmlr/styler/pulls?q=is%3Apr+author%3Alorenzwalthert+created%3A%3C2017-08-31++created%3A%3E2017-06-01">60</a> pull requests to master of which the vast majority was merged.</li>
 </ul>
-<p>The activity during GSOC can be grouped into the following steps:</p>
+<p>The activity during GSOC can be grouped as follows:</p>
 <ul>
-<li>Replicating the outcomes that were achieved with flat styling with nested styling. Required implementeation of the visitor as well as different serialization method.</li>
-<li>Adding functionality that was only possible with the nested styling such as indention based on operators (<code>+</code>, <code>%&gt;%</code> etc.), braces <code>{</code> and <code>(</code>. the use of raw indention, allowing for token-dependent re-indention.</li>
-<li>Infrastructure changes such as serialized testing, improve performance, create mutli-line attribute, code refactoring. Partially flattening out the nested parse table.</li>
-<li>Extending the functionality that was not there with the flat approach. Examples include styling multiple expressions, token replacement (e.g. <code>&lt;-</code> for <code>=</code>), line break rules (invasive and non-invaive), token insertion (<code>()</code> in function calls within pipes), RStudio Addins, styling of comments, styling of a single file, public api redesign, spacing around more operators (colons, commas, infix operators, bang-bang).</li>
+<li>
+<em>Replicating the outcomes that were achieved with flat styling with nested styling.</em> Required implementation of the visitor as well as different serialization method.</li>
+<li>
+<em>Adding functionality that was only possible with the nested styling</em> such as indention based on operators (<code>+</code>, <code>%&gt;%</code> etc.), braces <code>{</code> and <code>(</code>. the use of raw indention, allowing for token-dependent re-indention.</li>
+<li>
+<em>Infrastructure changes</em> such as serialized testing, improve performance, create multi-line attribute, code re-factoring. Partially flattening out the nested parse table.</li>
+<li>
+<em>Extending the functionality that was not there with the flat approach.</em> Examples include styling multiple expressions, token replacement (e.g. <code>&lt;-</code> for <code>=</code>), line break rules (invasive and non-invasive), token insertion (<code>()</code> in function calls within pipes), RStudio Addins, styling of comments, styling of a single file, public API redesign, spacing around more operators (colons, commas, infix operators, bang-bang).</li>
 </ul>
-<p>The list above is not comprehensive and covers only the large contributions. Always along with coding, documentation and tests were provided. With regard to the initial <a href="https://docs.google.com/document/d/1V7ZWOVjEqM6-vc7WVxePUOHHc48HJwBKh8gAwIFALJ4/edit">proposal</a>, we can say that steps one to four were completed to a large extend and a few points under step 5 have been implemented too. The tidyverse style guide does not cover all formatting cases, so in particular for function calls, there are various cases uncovered and a corresponding <a href="https://github.com/krlmlr/styler/issues/125">issue</a> was opened in the styler repo. Also, it was not possible in this project to implement the rule that forces lines to be less than 80 characters long. We leave this to <a href="https://github.com/jimhester/lintr">lintr</a>. Known remaining problems are well-documented on the [issue page](<a href="https://github.com/krlmlr/styler/issues">issue</a> of the main repository on GitHub.</p>
-<p>It is nice to see that <code>styler</code> already got some traction from the community. The maintainer of the package <a href="https://github.com/tidyverse/reprex">reprex</a> plans to <a href="https://github.com/tidyverse/reprex/issues/94">add styler as a dependency</a>.</p>
+<p>The list above is not comprehensive and covers only the large contributions. Always along with coding, documentation and tests were provided. With regard to the initial <a href="https://docs.google.com/document/d/1V7ZWOVjEqM6-vc7WVxePUOHHc48HJwBKh8gAwIFALJ4/edit">proposal</a>, we can say that steps one to four (increase documentation and testing of code, perform all operations on with a nested structure, and fully support the tidyverse style guide) were completed to a large extend and a few points under step five have been implemented too. The remaining points under step five as well as the open issues of the repository indicate the direction of further development of the package.</p>
+<p>The tidyverse style guide does not cover all formatting cases, so in particular for function calls, there are various cases uncovered and a corresponding <a href="https://github.com/krlmlr/styler/issues/125">issue</a> was opened in the styler repository.</p>
+<p>Also, it was not possible in this project to implement the rule that forces lines to be less than 80 characters long. We leave this to <a href="https://github.com/jimhester/lintr">lintr</a>. Known remaining problems are well-documented on the [issue page](<a href="https://github.com/krlmlr/styler/issues">issue</a> of the main repository on GitHub.</p>
+<p>It is nice to see that <code>styler</code> already got some traction from the community. The maintainer of the package <a href="https://github.com/tidyverse/reprex">reprex</a> plans to <a href="https://github.com/tidyverse/reprex/issues/94">add styler as a dependency</a>. As soon as one of its dependencies is accepted to CRAN, styler will also be submitted.</p>
 </div>
 <div id="low-level-analysis" class="section level1">
 <h1 class="hasAnchor">
 <a href="#low-level-analysis" class="anchor"></a>Low-level analysis</h1>
-<p>We can use the package <code>gitsum</code> to perform an analysis of the GitHub repository.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"gitsum"</span>)
+<p>We can use the package <code>gitsum</code> to perform an analysis of the git repository.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"gitsum"</span>) <span class="co"># remotes::install_github("lorenzwalthert/gitsum")</span>
 <span class="kw">library</span>(<span class="st">"tidyverse"</span>)
 log &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/gitsum/topics/git_log_detailed">git_log_detailed</a></span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(date <span class="op">&gt;</span><span class="st"> </span><span class="kw">as.Date</span>(<span class="st">"2017-06-01"</span>), date <span class="op">&lt;</span><span class="st"> </span><span class="kw">as.Date</span>(<span class="st">"2017-08-31"</span>))</code></pre></div>
@@ -222,7 +232,7 @@ log &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocument
             &lt;chr&gt; &lt;int&gt;
 1   Kirill Müller    60
 2 Lorenz Walthert   357</code></pre>
-<p>We can also look at how the number of lines in the different files eveolved</p>
+<p>We can also look at how the number of lines in the different files evolved:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lines &lt;-<span class="st"> </span>log <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/gitsum/topics/add_line_history">add_line_history</a></span>()
 
@@ -245,13 +255,27 @@ to_plot &lt;-<span class="st"> </span>lines <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="kw">sum</span>(total_insertions) <span class="op">+</span><span class="st"> </span><span class="kw">sum</span>(total_deletions)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">pull</span>()</code></pre></div>
 <pre><code>[1] 26317</code></pre>
-<p>Which still contains many insertions and deletions in some files that were generated as a biproduct, so let’s focus on the code in the <code>R</code> directory.</p>
+<p>Which still contains many insertions and deletions in some files that were generated as a bi-product, so let’s focus on the code in the <code>R</code> directory.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">log <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">unnest</span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(<span class="kw">dirname</span>(changed_file) <span class="op">==</span><span class="st"> "R"</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="kw">sum</span>(insertions) <span class="op">+</span><span class="st"> </span><span class="kw">sum</span>(deletions)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">pull</span>()</code></pre></div>
 <pre><code>[1] 5703</code></pre>
+<p>The core code with .R file only consists of</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">log <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">unnest</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">"</span><span class="ch">\\</span><span class="st">.R$"</span>, <span class="kw">basename</span>(changed_file))) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="kw">sum</span>(insertions) <span class="op">-</span><span class="st"> </span><span class="kw">sum</span>(deletions)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">pull</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">cat</span>(<span class="st">"lines"</span>)</code></pre></div>
+<pre><code>3964 lines</code></pre>
+</div>
+<div id="final-remarks" class="section level1">
+<h1 class="hasAnchor">
+<a href="#final-remarks" class="anchor"></a>Final remarks</h1>
+<p>First and foremost, I want to thank my mentors, in particular Kirill Mueller, for his patience and time he put into that project. I really appreciate that and I think apart from the code submitted, I benefited so much from him in terms of how to code, what considerations to make and how to deal with pitfalls and unexpected problems along the way.</p>
+<p>In addition, I want to thank Google for their contributions to open source that made this project possible as well as all people involved with organizing GSOC from the R community. It was an amazing experience.</p>
 </div>
 </div>
   </div>
@@ -261,8 +285,10 @@ to_plot &lt;-<span class="st"> </span>lines <span class="op">%&gt;%</span>
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#high-level-overview">High-level overview</a></li>
+<li><a href="#styler-in-practice">Styler in practice</a></li>
+      <li><a href="#contributions-to-styler-during-gsoc">Contributions to styler during GSOC</a></li>
       <li><a href="#low-level-analysis">Low-level analysis</a></li>
+      <li><a href="#final-remarks">Final remarks</a></li>
       </ul>
 </div>
       </div>
