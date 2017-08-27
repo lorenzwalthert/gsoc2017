@@ -98,14 +98,30 @@
 <div id="functionality" class="section level1">
 <h1 class="hasAnchor">
 <a href="#functionality" class="anchor"></a>Functionality</h1>
-<p>The package can style text, single files, packages and entire R source trees. In brief, styler works as follows:</p>
+<p>The package can style text, single files, packages and entire R source trees with the following functions:</p>
+<ul>
+<li>
+<code><a href="reference/style_text.html">style_text()</a></code> styles a character vector.</li>
+<li>
+<code><a href="reference/style_file.html">style_file()</a></code> styles a single .R file.</li>
+<li>
+<code><a href="reference/style_dir.html">style_dir()</a></code> styles all .R files in a directory.</li>
+<li>
+<code><a href="reference/style_pkg.html">style_pkg()</a></code> styles the source files of an R package.</li>
+<li>An RStudio Addin that styles the active file .R file, the current package or the highlighted code.</li>
+</ul>
+</div>
+<div id="mechanics" class="section level1">
+<h1 class="hasAnchor">
+<a href="#mechanics" class="anchor"></a>Mechanics</h1>
+<p>In brief, styler works as follows:</p>
 <ol style="list-style-type: decimal">
 <li>Create a abstract syntax tree (AST) from <code><a href="http://www.rdocumentation.org/packages/utils/topics/getParseData">utils::getParseData()</a></code> that contains positional information of every token. We call this a nested parse table.</li>
 <li>Apply transformer functions at each level of the nested parse table. In particular, modify information about the position of the token.</li>
 <li>Serialize the nested parse table, that is, extract the terminal tokens from the nested parse table and add spaces and line breaks between them as specified in the nested parse table.</li>
 </ol>
 <p>A style guide applied to code is hence just a set of transformer functions applied to each level of nesting. The main goal of this GSOC project was to provide infrastructure that allows performing the above steps and implementing one particular style guide: The <a href="http://style.tidyverse.org">tidyverse style guide</a>. However, since technically speaking, the style guide is just a set of transformer functions, everybody can implement a style guide. There is a <a href="articles/customizing-styler.html">vignette</a> that describes how to do that with an example.</p>
-<p>To find more about the contribution made to styler through Google Summer of Code 2017, you can have a look at the corresponding <a href="articles/gsoc_contrib.html">vignette</a>.</p>
+<p>To find out more about the contribution made to styler through Google Summer of Code 2017, you can have a look at the corresponding <a href="articles/gsoc_contrib.html">vignette</a>.</p>
 </div>
 <div id="further-resources" class="section level1">
 <h1 class="hasAnchor">
