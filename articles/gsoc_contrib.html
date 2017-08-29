@@ -87,7 +87,7 @@
       <h1>Google Summer of Code Contributions</h1>
                         <h4 class="author">Lorenz Walthert</h4>
             
-            <h4 class="date">2017-08-27</h4>
+            <h4 class="date">2017-08-29</h4>
           </div>
 
     
@@ -214,8 +214,8 @@ mtcars %&gt;%
 <li>
 <strong>Extending the functionality that was not there with the flat approach.</strong> Examples include styling multiple expressions, token replacement (e.g. <code>&lt;-</code> for <code>=</code>), line break rules (invasive and non-invasive), token insertion (<code>()</code> in function calls within pipes), RStudio Addins, styling of comments, styling of a single file, public API redesign, spacing around more operators (colons, commas, infix operators, bang-bang).</li>
 </ul>
-<p>The list above is not comprehensive and covers only the large contributions. Always along with coding, documentation and tests were provided. With regard to the initial <a href="https://docs.google.com/document/d/1V7ZWOVjEqM6-vc7WVxePUOHHc48HJwBKh8gAwIFALJ4/edit">proposal</a>, we can say that steps one to four (increase documentation and testing of code, perform all operations on with a nested structure, and fully support the tidyverse style guide) were completed to a large extend and a few points under step five have been implemented too. The remaining points under step five as well as the open issues of the repository indicate the direction of further development of the package.</p>
-<p>The tidyverse style guide does not cover all formatting cases, so in particular for function calls, there are various cases uncovered and a corresponding <a href="https://github.com/krlmlr/styler/issues/125">issue</a> was opened in the styler repository. Also, it was not possible in this project to implement the rule that forces lines to be less than 80 characters long. We leave this to <a href="https://github.com/jimhester/lintr">lintr</a>. Known remaining problems are well-documented on the [issue page](<a href="https://github.com/krlmlr/styler/issues">issue</a> of the main repository on GitHub. It is nice to see that <code>styler</code> already got some traction from the community. The maintainer of the package <a href="https://github.com/tidyverse/reprex">reprex</a> plans to <a href="https://github.com/tidyverse/reprex/issues/94">add styler as a dependency</a>. As soon as one of its dependencies is accepted to CRAN, styler will also be submitted.</p>
+<p>The list above is not comprehensive and covers only the large contributions. Always along with coding, documentation and tests were provided. With regard to the initial <a href="https://docs.google.com/document/d/1V7ZWOVjEqM6-vc7WVxePUOHHc48HJwBKh8gAwIFALJ4/edit">proposal</a>, we can say that steps one to four (increase documentation and testing of code, perform all operations on with a nested structure, and fully support the tidyverse style guide) were completed to a large extent and a few points under step five have been implemented too. The remaining points under step five as well as the open issues of the repository indicate the direction of further development of the package.</p>
+<p>The tidyverse style guide does not cover all formatting cases, so in particular for function calls, there are various cases uncovered and a corresponding <a href="https://github.com/krlmlr/styler/issues/125">issue</a> was opened in the styler repository. Also, it was not possible in this project to implement the rule that forces lines to be less than 80 characters long. We leave this to <a href="https://github.com/jimhester/lintr">lintr</a>. Known remaining problems are well-documented on the <a href="https://github.com/krlmlr/styler/issues">issue page</a> of the main repository on GitHub. It is nice to see that <code>styler</code> already got some traction from the community. The maintainer of the package <a href="https://github.com/tidyverse/reprex">reprex</a> plans to <a href="https://github.com/tidyverse/reprex/issues/94">add styler as a dependency</a>. As soon as one of its dependencies is accepted to CRAN, styler will also be submitted.</p>
 </div>
 </div>
 <div id="low-level-analysis" class="section level1">
@@ -236,7 +236,7 @@ log &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocument
             &lt;chr&gt; &lt;int&gt;
 1      Jon Calder     1
 2   Kirill Müller    60
-3 Lorenz Walthert   353</code></pre>
+3 Lorenz Walthert   355</code></pre>
 <p>We can also look at how the number of lines in the different files evolved:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lines &lt;-<span class="st"> </span>log <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/gitsum/topics/add_line_history">add_line_history</a></span>()
@@ -259,7 +259,7 @@ to_plot &lt;-<span class="st"> </span>lines <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(author_name <span class="op">==</span><span class="st"> "Lorenz Walthert"</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="kw">sum</span>(total_insertions) <span class="op">+</span><span class="st"> </span><span class="kw">sum</span>(total_deletions)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">pull</span>()</code></pre></div>
-<pre><code>[1] 25837</code></pre>
+<pre><code>[1] 25883</code></pre>
 <p>Which still contains many insertions and deletions in some files that were generated as a bi-product, so let’s focus on the code in the <code>R</code> directory.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">log <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">unnest</span>() <span class="op">%&gt;%</span>
