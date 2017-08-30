@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Prettify R code in current working directory — prettify_any • styler</title>
+<title>Transform a file an give customized message — transform_file • styler</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -107,28 +107,54 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Prettify R code in current working directory</h1>
+    <h1>Transform a file an give customized message</h1>
     </div>
 
     
-    <p>This is a helper function for style_dir.</p>
+    <p>Wraps <code><a href='http://www.rdocumentation.org/packages/utf8/topics/transform_lines_enc'>utf8::transform_lines_enc()</a></code> and gives customized messages.</p>
     
 
-    <pre class="usage"><span class='fu'>prettify_any</span>(<span class='no'>transformers</span>, <span class='no'>recursive</span>)</pre>
+    <pre class="usage"><span class='fu'>transform_file</span>(<span class='no'>path</span>, <span class='no'>fun</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>max_char_path</span>,
+  <span class='kw'>message_before</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>message_after</span> <span class='kw'>=</span> <span class='st'>" [DONE]"</span>,
+  <span class='kw'>message_after_if_changed</span> <span class='kw'>=</span> <span class='st'>" *"</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>transformers</th>
-      <td><p>A set of transformer functions. This argument is most
-conveniently constructed via the <code>style</code> argument and <code>...</code>. See
-'Examples'.</p></td>
+      <th>path</th>
+      <td><p>A vector of file paths.</p></td>
     </tr>
     <tr>
-      <th>recursive</th>
-      <td><p>A logical value indicating whether or not files in subdirectories
-should be styled as well.</p></td>
+      <th>fun</th>
+      <td><p>A function that returns a character vector.</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>Should the function show a message with a list of changed
+files?</p></td>
+    </tr>
+    <tr>
+      <th>max_char_path</th>
+      <td><p>The number of characters of the longest path. Determines
+the indention level of <code>message_after</code>.</p></td>
+    </tr>
+    <tr>
+      <th>message_before</th>
+      <td><p>The message to print before the path.</p></td>
+    </tr>
+    <tr>
+      <th>message_after</th>
+      <td><p>The message to print after the path.</p></td>
+    </tr>
+    <tr>
+      <th>message_after_if_changed</th>
+      <td><p>The message to print after <code>message_after</code> if
+any file was transformed.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Further arguments passed to <code><a href='http://www.rdocumentation.org/packages/utf8/topics/transform_lines_enc'>utf8::transform_lines_enc()</a></code>.</p></td>
     </tr>
     </table>
     

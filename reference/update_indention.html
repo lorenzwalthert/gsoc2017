@@ -148,10 +148,10 @@ line break and space information via <code><a href='create_filler.html'>create_f
     <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
 
     <ul>
-<li><p><code>indent_round</code>: Inserts indetion based on round brackets.</p></li>
-<li><p><code>indent_op</code>: Indents operatos</p></li>
-<li><p><code>indent_eq_sub</code>: Upates indention for token EQ_SUB. Only differs
-from ident_op in the sense that the last token on the talbe where EQ_SUB
+<li><p><code>indent_round</code>: Inserts indention based on round brackets.</p></li>
+<li><p><code>indent_op</code>: Indents operators</p></li>
+<li><p><code>indent_eq_sub</code>: Updates indention for token EQ_SUB. Only differs
+from indent_op in the sense that the last token on the table where EQ_SUB
 occurs is not indented (see<code><a href='compute_indent_indices.html'>compute_indent_indices()</a></code>)</p></li>
 <li><p><code>indent_assign</code>: Same as indent_op, but only indents one token
 after <code>token</code>, not all remaining.</p></li>

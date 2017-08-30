@@ -87,7 +87,7 @@
       <h1>Google Summer of Code Contributions</h1>
                         <h4 class="author">Lorenz Walthert</h4>
             
-            <h4 class="date">2017-08-29</h4>
+            <h4 class="date">2017-08-30</h4>
           </div>
 
     
@@ -223,7 +223,7 @@ mtcars %&gt;%
 <p>We can use the package <code>gitsum</code> to perform an analysis of the git repository.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"gitsum"</span>)
 <span class="kw">library</span>(<span class="st">"tidyverse"</span>)
-log &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/gitsum/topics/git_log_detailed">git_log_detailed</a></span>() <span class="op">%&gt;%</span>
+log &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/gitsum/topics/parse_log_detailed">parse_log_detailed</a></span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(date <span class="op">&gt;</span><span class="st"> </span><span class="kw">as.Date</span>(<span class="st">"2017-06-01"</span>), date <span class="op">&lt;</span><span class="st"> </span><span class="kw">as.Date</span>(<span class="st">"2017-08-31"</span>))</code></pre></div>
 <p>We see that the vast majority of the commits in this period come from the student and a few from the main mentor.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">log <span class="op">%&gt;%</span>
@@ -235,7 +235,7 @@ log &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocument
             &lt;chr&gt; &lt;int&gt;
 1      Jon Calder     2
 2   Kirill Müller    60
-3 Lorenz Walthert   357</code></pre>
+3 Lorenz Walthert   371</code></pre>
 <p>We can also look at how the number of lines in the different files evolved:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lines &lt;-<span class="st"> </span>log <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/gitsum/topics/add_line_history">add_line_history</a></span>()
@@ -258,14 +258,14 @@ to_plot &lt;-<span class="st"> </span>lines <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(author_name <span class="op">==</span><span class="st"> "Lorenz Walthert"</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="kw">sum</span>(total_insertions) <span class="op">+</span><span class="st"> </span><span class="kw">sum</span>(total_deletions)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">pull</span>()</code></pre></div>
-<pre><code>[1] 25900</code></pre>
+<pre><code>[1] 26288</code></pre>
 <p>This contains many insertions and deletions in some files that were generated as a by-product of the code changes themselves, so let’s focus on the code in the <code>R</code> directory.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">log <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">unnest</span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(<span class="kw">dirname</span>(changed_file) <span class="op">==</span><span class="st"> "R"</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="kw">sum</span>(insertions) <span class="op">+</span><span class="st"> </span><span class="kw">sum</span>(deletions)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">pull</span>()</code></pre></div>
-<pre><code>[1] 5731</code></pre>
+<pre><code>[1] 5888</code></pre>
 <p>The core code with .R files only consists of:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">log <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">unnest</span>() <span class="op">%&gt;%</span>
@@ -273,7 +273,7 @@ to_plot &lt;-<span class="st"> </span>lines <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="kw">sum</span>(insertions) <span class="op">-</span><span class="st"> </span><span class="kw">sum</span>(deletions)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">pull</span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">cat</span>(<span class="st">"lines"</span>)</code></pre></div>
-<pre><code>3976 lines</code></pre>
+<pre><code>4066 lines</code></pre>
 </div>
 <div id="final-remarks" class="section level1">
 <h1 class="hasAnchor">
