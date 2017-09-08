@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Serialize Flat Parse Data — serialize_parse_data_flat • styler</title>
+<title>Complete styled expression with unstyled fraction on start / end line — complete_styled_expr • styler</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -68,16 +68,16 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/customizing-styler.html">Customizing styler</a>
-    </li>
-    <li>
-      <a href="../articles/data_structures.html">Data Structures</a>
+      <a href="../articles/customizing_styler.html">Customizing styler</a>
     </li>
     <li>
       <a href="../articles/gsoc_contrib.html">Google Summer of Code Contributions</a>
     </li>
     <li>
-      <a href="../articles/manipulating_nested_parse_data.html">Manipulating the nested Parse Table</a>
+      <a href="../articles/gsoc_proposal/data_structures.html">Data Structures</a>
+    </li>
+    <li>
+      <a href="../articles/gsoc_proposal/manipulating_nested_parse_data.html">Manipulating the nested parse table</a>
     </li>
     <li>
       <a href="../articles/performance_improvements.html">Performance Improvements</a>
@@ -107,33 +107,33 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Serialize Flat Parse Data</h1>
+    <h1>Complete styled expression with unstyled fraction on start / end line</h1>
     </div>
 
     
-    <p>Collapses a parse table into character vector representation.</p>
+    <p>Essentially adding the parts before the highlighted area on the line where
+the higlighted area starts to the styled expression. Also, after the styled
+expression, the remainder of that line that was not styled is added.</p>
     
 
-    <pre class="usage"><span class='fu'>serialize_parse_data_flat</span>(<span class='no'>pd_flat</span>)</pre>
+    <pre class="usage"><span class='fu'>complete_styled_expr</span>(<span class='no'>context</span>, <span class='no'>styled_expr</span>, <span class='no'>neighbourhood</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>pd_flat</th>
-      <td><p>A parse table.</p></td>
+      <th>context</th>
+      <td><p>The context from <code><a href='find_active_context.html'>find_active_context()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>styled_expr</th>
+      <td><p>Character vector consisting of the styled expression.</p></td>
+    </tr>
+    <tr>
+      <th>neighbourhood</th>
+      <td><p>Neighbourhood obtained from <code><a href='extract_neighbourhood.html'>extract_neighbourhood()</a></code>.</p></td>
     </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The function essentially collapses the column text of <code>pd_flat</code>
-while taking into account space and linebreak information from the columns
-newlines and spaces. 
-Roughly speaking, this is the inverse operation of
-<code><a href='compute_parse_data_flat_enhanced.html'>compute_parse_data_flat_enhanced()</a></code>, which turns a character vector into a
-parse table, since <code>serialize_parse_data_flat()</code> turns a parse table back
-into a character vector.</p>
     
 
   </div>
@@ -141,9 +141,7 @@ into a character vector.</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#details">Details</a></li>
-          </ul>
+                </ul>
 
   </div>
 </div>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Serialize a nested parse table — serialize_parse_data_nested • styler</title>
+<title>Style a region of text given context — style_region • styler</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -68,16 +68,16 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/customizing-styler.html">Customizing styler</a>
-    </li>
-    <li>
-      <a href="../articles/data_structures.html">Data Structures</a>
+      <a href="../articles/customizing_styler.html">Customizing styler</a>
     </li>
     <li>
       <a href="../articles/gsoc_contrib.html">Google Summer of Code Contributions</a>
     </li>
     <li>
-      <a href="../articles/manipulating_nested_parse_data.html">Manipulating the nested Parse Table</a>
+      <a href="../articles/gsoc_proposal/data_structures.html">Data Structures</a>
+    </li>
+    <li>
+      <a href="../articles/gsoc_proposal/manipulating_nested_parse_data.html">Manipulating the nested parse table</a>
     </li>
     <li>
       <a href="../articles/performance_improvements.html">Performance Improvements</a>
@@ -107,28 +107,27 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Serialize a nested parse table</h1>
+    <h1>Style a region of text given context</h1>
     </div>
 
     
-    <p>Collapses a nested parse table into its character vector representation.</p>
+    <p>First extracts the relevant expression from <code>text</code> and returns after styling.</p>
     
 
-    <pre class="usage"><span class='fu'>serialize_parse_data_nested</span>(<span class='no'>pd_nested</span>)</pre>
+    <pre class="usage"><span class='fu'>style_region</span>(<span class='no'>text</span>, <span class='no'>context</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>pd_nested</th>
-      <td><p>A nested parse table with line break, spaces and indention
-information.</p></td>
+      <th>text</th>
+      <td><p>Character vector that contains the highlighted region.</p></td>
+    </tr>
+    <tr>
+      <th>context</th>
+      <td><p>The context from <code><a href='find_active_context.html'>find_active_context()</a></code>.</p></td>
     </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A character string.</p>
     
 
   </div>
@@ -136,9 +135,7 @@ information.</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-          </ul>
+                </ul>
 
   </div>
 </div>

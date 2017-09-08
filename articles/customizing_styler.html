@@ -239,8 +239,6 @@ pd<span class="op">$</span>child[[<span class="dv">1</span>]] <span class="op">%
 <p>We first need to get familiar with the structure of the nested parse table. Note that the structure of the nested parse table is not affected by the position of line breaks and spaces. Let’s first create the nested parse table.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">code &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"add_one &lt;- function(x) { x + 1 }"</span>)
 styler<span class="op">:::</span><span class="kw"><a href="../reference/create_tree.html">create_tree</a></span>(code)</code></pre></div>
-<pre><code>## Warning: replacing previous import 'scales::viridis_pal' by
-## 'viridis::viridis_pal' when loading 'DiagrammeR'</code></pre>
 <pre><code>##                                              levelName
 ## 1  ROOT (token: short_text [lag_newlines/spaces] {id})
 ## 2   °--expr:  [0/0] {23}                              

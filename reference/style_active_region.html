@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pre-processing parse data — enhance_parse_data • styler</title>
+<title>Style the highlighted region — style_active_region • styler</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -68,16 +68,16 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/customizing-styler.html">Customizing styler</a>
-    </li>
-    <li>
-      <a href="../articles/data_structures.html">Data Structures</a>
+      <a href="../articles/customizing_styler.html">Customizing styler</a>
     </li>
     <li>
       <a href="../articles/gsoc_contrib.html">Google Summer of Code Contributions</a>
     </li>
     <li>
-      <a href="../articles/manipulating_nested_parse_data.html">Manipulating the nested Parse Table</a>
+      <a href="../articles/gsoc_proposal/data_structures.html">Data Structures</a>
+    </li>
+    <li>
+      <a href="../articles/gsoc_proposal/manipulating_nested_parse_data.html">Manipulating the nested parse table</a>
     </li>
     <li>
       <a href="../articles/performance_improvements.html">Performance Improvements</a>
@@ -107,50 +107,22 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Pre-processing parse data</h1>
+    <h1>Style the highlighted region</h1>
     </div>
 
     
-    <p>Modifies the parse table minimally by applying some pre-processing steps.</p>
+    <p>Helper function for RStudio Addin. This function is complicated because of
+one thing: You can highlight also just parts of lines.</p>
     
 
-    <pre class="usage"><span class='fu'>enhance_parse_data</span>(<span class='no'>parse_data</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>parse_data</th>
-      <td><p>a parse table.</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>a pre-processed parse table.</p>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    
-    <p>Preprocessing includes</p><ul>
-<li><p>removing non-terminal entries.</p></li>
-<li><p>removing columns id, parent and terminal.</p></li>
-<li><p>adding a start token.</p></li>
-<li><p>adding line-break and space information.</p></li>
-<li><p>removing spaces in comments at the end of the line.</p></li>
-</ul>
-    
+    <pre class="usage"><span class='fu'>style_active_region</span>()</pre>
+        
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
-          </ul>
+                </ul>
 
   </div>
 </div>

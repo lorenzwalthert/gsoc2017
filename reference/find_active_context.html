@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Serialize a nested parse table — serialize_parse_data_nested_helper • styler</title>
+<title>Helper to extract and preprocess relevant attributes from
+<code><a href='http://www.rdocumentation.org/packages/rstudioapi/topics/rstudio-editors'>rstudioapi::getActiveDocumentContext()</a></code>. — find_active_context • styler</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -68,16 +69,16 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/customizing-styler.html">Customizing styler</a>
-    </li>
-    <li>
-      <a href="../articles/data_structures.html">Data Structures</a>
+      <a href="../articles/customizing_styler.html">Customizing styler</a>
     </li>
     <li>
       <a href="../articles/gsoc_contrib.html">Google Summer of Code Contributions</a>
     </li>
     <li>
-      <a href="../articles/manipulating_nested_parse_data.html">Manipulating the nested Parse Table</a>
+      <a href="../articles/gsoc_proposal/data_structures.html">Data Structures</a>
+    </li>
+    <li>
+      <a href="../articles/gsoc_proposal/manipulating_nested_parse_data.html">Manipulating the nested parse table</a>
     </li>
     <li>
       <a href="../articles/performance_improvements.html">Performance Improvements</a>
@@ -107,43 +108,23 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Serialize a nested parse table</h1>
+    <h1>Helper to extract and preprocess relevant attributes from
+<code><a href='http://www.rdocumentation.org/packages/rstudioapi/topics/rstudio-editors'>rstudioapi::getActiveDocumentContext()</a></code>.</h1>
     </div>
 
     
-    <p>Helper function that recursively extracts terminals from a nested tibble.</p>
+    <p>Helper to extract and preprocess relevant attributes from
+<code><a href='http://www.rdocumentation.org/packages/rstudioapi/topics/rstudio-editors'>rstudioapi::getActiveDocumentContext()</a></code>.</p>
     
 
-    <pre class="usage"><span class='fu'>serialize_parse_data_nested_helper</span>(<span class='no'>pd_nested</span>, <span class='no'>pass_indent</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>pd_nested</th>
-      <td><p>A nested parse table.</p></td>
-    </tr>
-    <tr>
-      <th>pass_indent</th>
-      <td><p>Level of indention of a token.</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A character vector with all terminal tokens in <code>pd_nested</code> plus
-the appropriate amount of white spaces and line breaks are inserted between
-them.</p>
-    
+    <pre class="usage"><span class='fu'>find_active_context</span>()</pre>
+        
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-          </ul>
+                </ul>
 
   </div>
 </div>

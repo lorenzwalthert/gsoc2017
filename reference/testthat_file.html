@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>concentrate newlines an spaces in a string — newlines_and_spaces • styler</title>
+<title>Create the path to a test that file — testthat_file • styler</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -68,16 +68,16 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/customizing-styler.html">Customizing styler</a>
-    </li>
-    <li>
-      <a href="../articles/data_structures.html">Data Structures</a>
+      <a href="../articles/customizing_styler.html">Customizing styler</a>
     </li>
     <li>
       <a href="../articles/gsoc_contrib.html">Google Summer of Code Contributions</a>
     </li>
     <li>
-      <a href="../articles/manipulating_nested_parse_data.html">Manipulating the nested Parse Table</a>
+      <a href="../articles/gsoc_proposal/data_structures.html">Data Structures</a>
+    </li>
+    <li>
+      <a href="../articles/gsoc_proposal/manipulating_nested_parse_data.html">Manipulating the nested parse table</a>
     </li>
     <li>
       <a href="../articles/performance_improvements.html">Performance Improvements</a>
@@ -107,32 +107,24 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>concentrate newlines an spaces in a string</h1>
+    <h1>Create the path to a test that file</h1>
     </div>
 
     
-    <p>concentrate newlines an spaces in a string</p>
+    <p>Create the path to a test that file</p>
     
 
-    <pre class="usage"><span class='fu'>newlines_and_spaces</span>(<span class='no'>newlines</span>, <span class='no'>spaces</span>)</pre>
+    <pre class="usage"><span class='fu'>testthat_file</span>(<span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>newlines</th>
-      <td><p>Scalar indicating how many newlines ("\ n") should returned.</p></td>
-    </tr>
-    <tr>
-      <th>spaces</th>
-      <td><p>Scalar indicating how many spaces should be appended to the
-newlines.</p></td>
+      <th>...</th>
+      <td><p>Arguments passed to <code>file.path()</code> to construct the path after
+".../tests/testthat/"</p></td>
     </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A string.</p>
     
 
   </div>
@@ -140,9 +132,7 @@ newlines.</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-          </ul>
+                </ul>
 
   </div>
 </div>

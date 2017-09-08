@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Verify parse data modifications — verify_roundtrip • styler</title>
+<title>Extract text around the highlighted text — extract_neighbourhood • styler</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -68,16 +68,16 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/customizing-styler.html">Customizing styler</a>
-    </li>
-    <li>
-      <a href="../articles/data_structures.html">Data Structures</a>
+      <a href="../articles/customizing_styler.html">Customizing styler</a>
     </li>
     <li>
       <a href="../articles/gsoc_contrib.html">Google Summer of Code Contributions</a>
     </li>
     <li>
-      <a href="../articles/manipulating_nested_parse_data.html">Manipulating the nested Parse Table</a>
+      <a href="../articles/gsoc_proposal/data_structures.html">Data Structures</a>
+    </li>
+    <li>
+      <a href="../articles/gsoc_proposal/manipulating_nested_parse_data.html">Manipulating the nested parse table</a>
     </li>
     <li>
       <a href="../articles/performance_improvements.html">Performance Improvements</a>
@@ -107,38 +107,38 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Verify parse data modifications</h1>
+    <h1>Extract text around the highlighted text</h1>
     </div>
 
     
-    <p>Check whether serializing the parse data results in the same
-number of lines as the initial data that should be styled.</p>
+    <p>Extracts unselected text on highlighted lines and text on other lines</p>
     
 
-    <pre class="usage"><span class='fu'>verify_roundtrip</span>(<span class='no'>pd_flat</span>, <span class='no'>text</span>)</pre>
+    <pre class="usage"><span class='fu'>extract_neighbourhood</span>(<span class='no'>text</span>, <span class='no'>context</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>pd_flat</th>
-      <td><p>A parse table.</p></td>
+      <th>text</th>
+      <td><p>Character vector that contains highlighted area.</p></td>
     </tr>
     <tr>
-      <th>text</th>
-      <td><p>A character vector with the initial text to compare against.</p></td>
+      <th>context</th>
+      <td><p>The context from <code><a href='find_active_context.html'>find_active_context()</a></code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>If the verification is successful, <code>pd</code> is returned, with empty
-lines at the end of <code>text</code> stripped. 
-Otherwise, an error is thrown.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <p>A character vector of length three.</p><ul>
+<li><p>The first element corresponds to the text on the start line that was not
+selected.</p></li>
+<li><p>The second element to the text on the end line that was not selected.</p></li>
+<li><p>The third element are the lines that are not overlapping with the
+highlighted text.</p></li>
+</ul>
 
-    <p><code><a href='serialize_parse_data_flat.html'>serialize_parse_data_flat()</a></code></p>
     
 
   </div>
@@ -148,8 +148,6 @@ Otherwise, an error is thrown.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#see-also">See also</a></li>
           </ul>
 
   </div>
