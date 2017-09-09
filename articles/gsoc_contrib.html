@@ -87,7 +87,7 @@
       <h1>Google Summer of Code Contributions</h1>
                         <h4 class="author">Lorenz Walthert</h4>
             
-            <h4 class="date">2017-09-08</h4>
+            <h4 class="date">2017-09-09</h4>
           </div>
 
     
@@ -100,12 +100,10 @@
 <p>As a warm-up, we want to provide a few examples of how <code>styler</code> styles code. It’s possible to use different levels of ‘invasiveness’, as described in the help file for the only style guide implemented so far, which is the <a href="http://style.tidyverse.org/index.html">tidyverse style guide</a>. The style guide in use is passed to the styling function (i.e <code><a href="../reference/style_text.html">style_text()</a></code> and friends) via the <code>style</code> argument, which defaults to <code>tidyverse_style</code>. In addition to this argument, there are further customization options. For example, we can limit ourselves to styling just spacing information by indicating this with the <code>scope</code> argument:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"styler"</span>)
 <span class="kw">library</span>(<span class="st">"magrittr"</span>)
-<span class="kw"><a href="../reference/style_text.html">style_text</a></span>(<span class="st">"a=3; 2"</span>, <span class="dt">scope =</span> <span class="st">"spaces"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">cat</span>()</code></pre></div>
+<span class="kw"><a href="../reference/style_text.html">style_text</a></span>(<span class="st">"a=3; 2"</span>, <span class="dt">scope =</span> <span class="st">"spaces"</span>)</code></pre></div>
 <pre><code>a = 3; 2</code></pre>
 <p>Or, on the other extreme of the scale, styling spaces, indention, line breaks and tokens:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/style_text.html">style_text</a></span>(<span class="st">"a=3; 2"</span>, <span class="dt">scope =</span> <span class="st">"tokens"</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">cat</span>(<span class="dt">sep =</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/style_text.html">style_text</a></span>(<span class="st">"a=3; 2"</span>, <span class="dt">scope =</span> <span class="st">"tokens"</span>)</code></pre></div>
 <pre><code>a &lt;- 3
 2</code></pre>
 <p>Another option that is helpful to determine the level of ‘invasiveness’ is <code>strict</code>. If set to <code>TRUE</code>, spaces and line breaks before or after tokens are set to either zero or one. However, in some situations this might be undesirable, as the following example shows:</p>
@@ -114,8 +112,8 @@
 <span class="st">     small  = 2 ,</span>
 <span class="st">     medium = 4,#comment without space</span>
 <span class="st">     large  = 6</span>
-<span class="st">   )"</span>, <span class="dt">strict =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">cat</span>(<span class="dt">sep =</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</code></pre></div>
+<span class="st">   )"</span>, <span class="dt">strict =</span> <span class="ot">FALSE</span>
+)</code></pre></div>
 <pre><code>data_frame(
   small  = 2,
   medium = 4, # comment without space
@@ -236,7 +234,7 @@ log &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocument
             &lt;chr&gt; &lt;int&gt;
 1      Jon Calder     2
 2   Kirill Müller    60
-3 Lorenz Walthert   388</code></pre>
+3 Lorenz Walthert   391</code></pre>
 <p>We can also look at how the number of lines in the different files evolved:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lines &lt;-<span class="st"> </span>log <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/gitsum/topics/add_line_history">add_line_history</a></span>()
@@ -259,14 +257,14 @@ to_plot &lt;-<span class="st"> </span>lines <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(author_name <span class="op">==</span><span class="st"> "Lorenz Walthert"</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="kw">sum</span>(total_insertions) <span class="op">+</span><span class="st"> </span><span class="kw">sum</span>(total_deletions)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">pull</span>()</code></pre></div>
-<pre><code>[1] 26767</code></pre>
+<pre><code>[1] 27015</code></pre>
 <p>This contains many insertions and deletions in some files that were generated as a by-product of the code changes themselves, so let’s focus on the code in the <code>R</code> directory.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">log <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">unnest</span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(<span class="kw">dirname</span>(changed_file) <span class="op">==</span><span class="st"> "R"</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="kw">sum</span>(insertions) <span class="op">+</span><span class="st"> </span><span class="kw">sum</span>(deletions)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">pull</span>()</code></pre></div>
-<pre><code>[1] 6042</code></pre>
+<pre><code>[1] 6180</code></pre>
 <p>The core code with .R files only consists of:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">log <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">unnest</span>() <span class="op">%&gt;%</span>
@@ -274,7 +272,7 @@ to_plot &lt;-<span class="st"> </span>lines <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="kw">sum</span>(insertions) <span class="op">-</span><span class="st"> </span><span class="kw">sum</span>(deletions)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">pull</span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">cat</span>(<span class="st">"lines"</span>)</code></pre></div>
-<pre><code>4213 lines</code></pre>
+<pre><code>4251 lines</code></pre>
 </div>
 <div id="final-remarks" class="section level1">
 <h1 class="hasAnchor">

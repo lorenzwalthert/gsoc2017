@@ -87,7 +87,7 @@
       <h1>Manipulating the nested parse table</h1>
                         <h4 class="author">Lorenz Walthert</h4>
             
-            <h4 class="date">2017-09-08</h4>
+            <h4 class="date">2017-09-09</h4>
           </div>
 
     
@@ -99,7 +99,7 @@
 <pre><code>library("dplyr")
 library("purrr")
 pkgload::load_all()</code></pre>
-<p>This vignette builds on the vignette “Data Structures” and discusses how to go forward with the nested structure of the parse data. In order to compute the white space information in a nested data structure, we use a <a href="https://en.wikipedia.org/wiki/Visitor_pattern">visitor approach</a> to separate the algorithm (computing white space information and later apply transformations) from the object (nested data structure). The function <code><a href="../../reference/create_filler.html">create_filler()</a></code> can then be used to compute current white space information on every level of nesting within the nested parse data if applied in combination with the visitor. In the sequel, a parse table at one level of nesting will be denoted with the term <em>nest</em>, which always represents a complete expression. Our visiting functions <code><a href="../../reference/visit.html">pre_visit()</a></code> and <code><a href="../../reference/visit.html">post_visit()</a></code> take an object to operate on and a list of functions. Concretely, the object is the nested parse table. Each function is applied at each level of nesting nesting before the next level of nesting is entered. You can find out more about the visitor on the help file for <code>visit</code> (note that this function is not exported by styler). pre_visit</p>
+<p>This vignette builds on the vignette “Data Structures” and discusses how to go forward with the nested structure of the parse data. In order to compute the white space information in a nested data structure, we use a <a href="https://en.wikipedia.org/wiki/Visitor_pattern">visitor approach</a> to separate the algorithm (computing white space information and later apply transformations) from the object (nested data structure). The function <code>create_filler()</code> (name depreciated, now called <code><a href="../../reference/initialize_attributes.html">initialize_attributes()</a></code>) can then be used to compute current white space information on every level of nesting within the nested parse data if applied in combination with the visitor. In the sequel, a parse table at one level of nesting will be denoted with the term <em>nest</em>, which always represents a complete expression. Our visiting functions <code><a href="../../reference/visit.html">pre_visit()</a></code> and <code><a href="../../reference/visit.html">post_visit()</a></code> take an object to operate on and a list of functions. Concretely, the object is the nested parse table. Each function is applied at each level of nesting nesting before the next level of nesting is entered. You can find out more about the visitor on the help file for <code>visit</code> (note that this function is not exported by styler). pre_visit</p>
 <pre><code>## function(pd_nested, funs) {
 ##   if (is.null(pd_nested)) return()
 ##   pd_transformed &lt;- visit_one(pd_nested, funs)
@@ -122,7 +122,7 @@ visit_one
 <li>We don’t need a *_nested() version of every function we want to apply to the parse tables, in particular the rules in R/rules.R</li>
 <li><p>We go through the whole structure only as many times as we call the visitor (instead of every *_nested() function going through it once), which is more efficient in terms of speed.</p></li>
 </ul>
-<p><code><a href="../../reference/create_filler.html">create_filler()</a></code> was adapted to also initialize indention and lag_newlines.</p>
+<p><code>create_filler()</code> was adapted to also initialize indention and lag_newlines.</p>
 <pre><code>create_filler
 
 ## function(pd_flat) {

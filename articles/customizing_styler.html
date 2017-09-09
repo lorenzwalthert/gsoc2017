@@ -107,11 +107,11 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"styler"</span>)
 <span class="kw">library</span>(<span class="st">"dplyr"</span>)
 <span class="kw">names</span>(<span class="kw"><a href="../reference/tidyverse_style.html">tidyverse_style</a></span>())</code></pre></div>
-<pre><code>## [1] "filler"            "line_break"        "space"            
+<pre><code>## [1] "initialize"        "line_break"        "space"            
 ## [4] "token"             "indention"         "use_raw_indention"</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw"><a href="../reference/tidyverse_style.html">tidyverse_style</a></span>(), <span class="dt">give.attr =</span> <span class="ot">FALSE</span>, <span class="dt">list.len =</span> <span class="dv">3</span>)</code></pre></div>
 <pre><code>## List of 6
-##  $ filler           :function (pd_flat)  
+##  $ initialize       :function (pd_flat)  
 ##  $ line_break       :List of 8
 ##   ..$ remove_line_break_before_curly_opening                                                                                                            :function (pd)  
 ##   ..$ remove_line_break_before_round_closing                                                                                                            :function (pd)  
@@ -135,7 +135,7 @@
 <p>As the name says, this function removes spaces after the opening parenthesis. But how? Its input is a <em>nest</em>. Since the visitor will go through all levels of nesting, we just need a function that can be applied to a <em>nest</em>, that is, to a parse table at one level of nesting. We can compute the nested parse table and look at one of the levels of nesting that is interesting for us (more on the data structure in the vignettes “Data structures” and “Manipulating the parse table”):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">string_to_format &lt;-<span class="st"> "call( 3)"</span>
 pd &lt;-<span class="st"> </span>styler<span class="op">:::</span><span class="kw"><a href="../reference/compute_parse_data_nested.html">compute_parse_data_nested</a></span>(string_to_format) <span class="op">%&gt;%</span>
-<span class="st">  </span>styler<span class="op">:::</span><span class="kw"><a href="../reference/visit.html">pre_visit</a></span>(<span class="kw">c</span>(styler<span class="op">:::</span>create_filler))
+<span class="st">  </span>styler<span class="op">:::</span><span class="kw"><a href="../reference/visit.html">pre_visit</a></span>(<span class="kw">c</span>(styler<span class="op">:::</span>initialize_attributes))
 pd<span class="op">$</span>child[[<span class="dv">1</span>]] <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(token, terminal, text, newlines, spaces)</code></pre></div>
 <pre><code>## # A tibble: 4 x 5
@@ -145,7 +145,7 @@ pd<span class="op">$</span>child[[<span class="dv">1</span>]] <span class="op">%
 ## 2   '('     TRUE     (        0      1
 ## 3  expr    FALSE              0      0
 ## 4   ')'     TRUE     )        0      0</code></pre>
-<p><code><a href="../reference/create_filler.html">create_filler()</a></code> is called to initialize some variables, it does not actually transform the parse table.</p>
+<p><code><a href="../reference/initialize_attributes.html">initialize_attributes()</a></code> is called to initialize some variables, it does not actually transform the parse table.</p>
 <p>All the function <code>remove_space_after_opening_paren()</code> now does is to look for the opening bracket and set the column <code>spaces</code> of the token to zero. Note that it is very important to check whether there is also a line break following after that token. If so, <code>spaces</code> should not be touched because of the way <code>spaces</code> and <code>newlines</code> are defined. <code>spaces</code> are the number of spaces after a token and <code>newlines</code>. Hence, if a line break follows, spaces are not EOL spaces, but rather the spaces directly before the next token. If there was a line break after the token and the rule did not check for that, indention for the token following <code>(</code> would be removed. This would be unwanted for example if <code>use_raw_indention</code> is set to <code>TRUE</code> (which means indention should not be touched). If we apply the rule to our parse table, we can see that the column <code>spaces</code> changes and is now zero for all tokens:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">styler<span class="op">:::</span><span class="kw">remove_space_after_opening_paren</span>(pd<span class="op">$</span>child[[<span class="dv">1</span>]]) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(token, terminal, text, newlines, spaces)</code></pre></div>
@@ -169,10 +169,10 @@ pd<span class="op">$</span>child[[<span class="dv">1</span>]] <span class="op">%
   <span class="kw"><a href="../reference/create_style_guide.html">create_style_guide</a></span>(<span class="dt">space =</span> <span class="cf">if</span> (are_you_sure) styler<span class="op">:::</span>remove_space_after_opening_paren)
 }
 <span class="kw"><a href="../reference/style_text.html">style_text</a></span>(<span class="st">"call( 1,1)"</span>, <span class="dt">style =</span> space_after_opening_style, <span class="dt">are_you_sure =</span> <span class="ot">FALSE</span>)  </code></pre></div>
-<pre><code>## [1] "call( 1,1)"</code></pre>
+<pre><code>## call( 1,1)</code></pre>
 <p>Well, we probably want:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/style_text.html">style_text</a></span>(<span class="st">"call( 1,1)"</span>, <span class="dt">style =</span> space_after_opening_style, <span class="dt">are_you_sure =</span> <span class="ot">TRUE</span>)  </code></pre></div>
-<pre><code>## [1] "call(1,1)"</code></pre>
+<pre><code>## call(1,1)</code></pre>
 <p>Note that the return value of your <code>style</code> function may not contain <code>NULL</code> elements.</p>
 <p>I hope you have acquired a basic understanding of how styler transforms code. You can provide your own transformer functions and use <code><a href="../reference/create_style_guide.html">create_style_guide()</a></code> to create customized code styling. If you do so, there are a few more things you should be aware of, which are described in the next section.</p>
 </div>
@@ -182,7 +182,7 @@ pd<span class="op">$</span>child[[<span class="dv">1</span>]] <span class="op">%
 <p>For both spaces and line break information in the nested parse table, we use four attributes in total: <code>newlines</code>, <code>lag_newlines</code>, <code>spaces</code>, and <code>lag_spaces</code>. <code>lag_spaces</code> is created from <code>spaces</code> only just before the parse table is serialized, so it is not relevant for manipulating the parse table as described above. These columns are to some degree redundant, but with just lag or lead, we would lose information on the first or the last element respectively, so we need both.</p>
 <p>The sequence in which styler applies rules on each level of nesting is given in the list below:</p>
 <ul>
-<li>call <code><a href="../reference/create_filler.html">create_filler()</a></code> to initialize some variables.</li>
+<li>call <code><a href="../reference/initialize_attributes.html">initialize_attributes()</a></code> to initialize some variables.</li>
 <li>modify the line breaks (modifying <code>lag_newlines</code> only based on <code>token</code>, <code>token_before</code>, <code>token_after</code> and <code>text</code>).</li>
 <li>modify the spaces (modifying <code>spaces</code> only based on <code>lag_newlines</code>, <code>newlines</code>, <code>multi_line</code>, <code>token</code>, <code>token_before</code>, <code>token_after</code> and <code>text</code>).</li>
 <li>modify the tokens (based on <code>newlines</code> <code>lag_newlines</code>, <code>spaces</code> <code>multi_line</code>, <code>token</code>, <code>token_before</code>, <code>token_after</code> and <code>text</code>).</li>
@@ -193,7 +193,7 @@ pd<span class="op">$</span>child[[<span class="dv">1</span>]] <span class="op">%
 <pre><code>## function(pd_nested, transformers) {
 ##   transformed_line_breaks &lt;- pre_visit(
 ##     pd_nested,
-##     c(transformers$filler,
+##     c(transformers$initialize,
 ##     transformers$line_break)
 ##   )
 ## 
@@ -282,7 +282,8 @@ styler<span class="op">:::</span><span class="kw"><a href="../reference/create_t
 }</code></pre></div>
 <p>Now you can style your string according to it.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/style_text.html">style_text</a></span>(code, <span class="dt">style =</span> set_line_break_before_curly_opening_style)</code></pre></div>
-<pre><code>## [1] "add_one &lt;- function(x)" "{ x + 1 }"</code></pre>
+<pre><code>## add_one &lt;- function(x)
+## { x + 1 }</code></pre>
 <p>Note that when removing line breaks, always take care of comments, since you don’t want:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="cf">function</span>() <span class="co"># comments should remain EOL</span>
 { 
